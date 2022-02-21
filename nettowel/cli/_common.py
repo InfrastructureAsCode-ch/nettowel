@@ -1,5 +1,4 @@
 from typing import Any, Dict, Optional, List
-from rich import print_json
 
 
 def get_members(obj: object, members: Optional[List[str]] = None) -> Dict[str, Any]:

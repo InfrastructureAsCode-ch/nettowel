@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Union, Optional
+from typing import Union
 import typer
 from rich import inspect as rich_inspect
 from rich import print_json
@@ -16,7 +16,7 @@ def ip_info(
     ctx: typer.Context,
     ip: str,
     json: bool = typer.Option(default=False, help="json output"),
-):
+) -> None:
     try:
         ip_obj: Union[IPv4Address, IPv6Address] = ip_address(ip)
         data = get_members(ip_obj)
@@ -37,7 +37,7 @@ def network_info(
     ctx: typer.Context,
     network: str,
     json: bool = typer.Option(default=False, help="json output"),
-):
+) -> None:
     try:
         net_obj = ip_network(network)
         data = get_members(net_obj)
