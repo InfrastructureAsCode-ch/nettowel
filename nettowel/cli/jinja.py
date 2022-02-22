@@ -2,12 +2,13 @@ from re import template
 import sys
 import typer
 from typing import Any, Dict, List
-from rich import inspect as rich_inspect
 from rich import print_json, print
 
 from rich.panel import Panel
 from rich.columns import Columns
+from rich.console import Group
 from rich.syntax import Syntax
+from rich.scope import render_scope
 from rich.json import JSON
 
 
@@ -151,10 +152,57 @@ def render(
 @app.command()
 def validate(
     ctx: typer.Context,
-    template: str,
+    template_file_name: typer.FileText = typer.Argument(
+        ...,
+        exists=True,
+        file_okay=True,
+        dir_okay=False,
+        readable=True,
+        resolve_path=True,
+        allow_dash=True,
+        metavar="TEMPLATE",
+    ),
     json: bool = typer.Option(default=False, help="json output"),
 ) -> None:
-    typer.echo("Validate template")
+    try:
+        if template_file_name == "-":
+            template_text = sys.stdin.read()
+        else:
+            with open(template_file_name) as template_file:  # type: ignore
+                template_text = template_file.read()
+        result, data = validate_template(template_text)
+        if json:
+            data["valid"] = result
+            print_json(data=data)
+        else:
+            if result:
+                print(
+                    Panel(
+                        "Template is valid :white_heavy_check_mark:",
+                        border_style="green",
+                        expand=False,
+                    )
+                )
+            else:
+                pannel_group = Group(
+                    Panel(
+                        "Template is [red bold]not[/] valide :hankey:",
+                        border_style="red",
+                    ),
+                    f'The validation resulted in the error "{data["message"]}" in the line number {data["lineno"]}.',
+                    f'The error is probably in the following line or before or after it.\n\n{data["line"]}\n',
+                    render_scope(data, title=str(data["message"])),
+                )
+                print(
+                    Panel(pannel_group, border_style="red", title="ERROR", expand=False)
+                )
+        if not result:
+            typer.Exit(1)
+        typer.Exit(0)
+
+    except ValueError:
+        typer.echo("Error")
+        typer.Exit(1)
 
 
 @app.command()

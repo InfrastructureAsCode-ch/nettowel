@@ -1,8 +1,8 @@
-from typing import Any
+from typing import Any, Tuple, Dict, Union
 from nettowel._common import needs
 
 try:
-    from jinja2 import Environment, Undefined
+    from jinja2 import Environment, Undefined, exceptions
 
     JINJA_INSTALLED = True
 
@@ -15,8 +15,19 @@ NOT_INSTALLED = (
 
 
 @needs(JINJA_INSTALLED, NOT_INSTALLED)
-def validate_template(template: str) -> None:
-    pass
+def validate_template(template: str) -> Tuple[bool, Dict[str, Union[str, int, None]]]:
+    try:
+        Environment().parse(template)
+        return True, dict()
+    except exceptions.TemplateSyntaxError as exc:
+        try:
+            line = template.splitlines()[exc.lineno - 1]
+        except IndexError:
+            line = ""
+
+        result = {"message": exc.message, "lineno": exc.lineno, "line": line}
+
+        return False, result
 
 
 @needs(JINJA_INSTALLED, NOT_INSTALLED)
