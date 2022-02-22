@@ -5,11 +5,11 @@ from rich import print_json
 from nettowel.cli._common import get_members, cleanup_dict
 
 
-app = typer.Typer(help="TTP templating functions")
+app = typer.Typer(help="Nornir functions")
 
 
 @app.command()
-def render(
+def run(
     ctx: typer.Context,
     # demo: str,
     json: bool = typer.Option(default=False, help="json output"),

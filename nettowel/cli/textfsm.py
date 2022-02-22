@@ -5,7 +5,7 @@ from rich import print_json
 from nettowel.cli._common import get_members, cleanup_dict
 
 
-app = typer.Typer(help="TTP templating functions")
+app = typer.Typer(help="TextFSM template functions")
 
 
 @app.command()
