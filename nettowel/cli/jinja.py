@@ -12,7 +12,7 @@ from rich.tree import Tree
 from rich.scope import render_scope
 from rich.json import JSON
 
-
+from nettowel.exceptions import NettowelDependencyMissing
 from nettowel.yaml import load as yaml_load
 from nettowel.cli._common import get_members, cleanup_dict
 from nettowel.jinja import render_template, validate_template, get_variables
@@ -207,8 +207,8 @@ def render(
             print(Columns(panels, equal=True))
         typer.Exit(0)
 
-    except ValueError as exc:
-        typer.echo(exc, err=True)
+    except NettowelDependencyMissing as exc:
+        typer.echo(str(exc), err=True)
         typer.Exit(1)
 
 
@@ -263,8 +263,8 @@ def validate(
             typer.Exit(1)
         typer.Exit(0)
 
-    except ValueError:
-        typer.echo("Error", err=True)
+    except NettowelDependencyMissing as exc:
+        typer.echo(str(exc), err=True)
         typer.Exit(1)
 
 
@@ -296,8 +296,9 @@ def variables(
             print_json(data=data)
         else:
             print(_variable_tree(result))
-    except Exception:
-        raise
+    except NettowelDependencyMissing as exc:
+        typer.echo(str(exc), err=True)
+        typer.Exit(1)
 
 
 if __name__ == "__main__":

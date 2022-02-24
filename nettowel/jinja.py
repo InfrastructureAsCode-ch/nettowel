@@ -1,4 +1,5 @@
 from typing import Any, Tuple, Dict, Union
+from nettowel.exceptions import NettowelDependencyMissing
 from nettowel._common import needs
 
 try:
@@ -9,12 +10,7 @@ try:
 except ImportError:
     JINJA_INSTALLED = False
 
-NOT_INSTALLED = (
-    "Jinja2 is not installed. Install it with pip: pip install nettowel[jinja]"
-)
 
-
-@needs(JINJA_INSTALLED, NOT_INSTALLED)
 def validate_template(template: str) -> Tuple[bool, Dict[str, Union[str, int, None]]]:
     """Validate jinja2 template
 
@@ -24,6 +20,7 @@ def validate_template(template: str) -> Tuple[bool, Dict[str, Union[str, int, No
     Returns:
         Tuple[bool, Dict[str, Union[str, int, None]]]: (True, {}) if template is valid. (False, {"message": ..., "lineno": ..., "line": ...})
     """
+    needs(JINJA_INSTALLED, "Jinja2", "jinja")
     try:
         Environment().parse(template)
         return True, dict()
@@ -38,7 +35,6 @@ def validate_template(template: str) -> Tuple[bool, Dict[str, Union[str, int, No
         return False, result
 
 
-@needs(JINJA_INSTALLED, NOT_INSTALLED)
 def render_template(
     template: str,
     data: Any,
@@ -58,6 +54,7 @@ def render_template(
     Returns:
         str: Rendered template
     """
+    needs(JINJA_INSTALLED, "Jinja2", "jinja")
     jinja_env = Environment(
         trim_blocks=trim_blocks,
         lstrip_blocks=lstrip_blocks,
@@ -68,7 +65,6 @@ def render_template(
     return jinja_env.from_string(template).render(**data)
 
 
-@needs(JINJA_INSTALLED, NOT_INSTALLED)
 def get_variables(template: str) -> Any:
     """Get a list of variables with jinja2schema
 
@@ -81,12 +77,11 @@ def get_variables(template: str) -> Any:
     Returns:
         Any: Return Dict with JSON Schema data
     """
+    needs(JINJA_INSTALLED, "Jinja2", "jinja")
     try:
         from jinja2schema import infer, to_json_schema
     except ImportError:
-        raise Exception(
-            "jinja2schema is not installed. Install it with pip: pip install nettowel[jinja]"
-        )
+        raise NettowelDependencyMissing("jinja2schema", "jinja")
 
     schema = infer(template)
     return to_json_schema(schema)

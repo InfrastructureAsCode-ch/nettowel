@@ -1,16 +1,7 @@
-from typing import Any, Callable, TypeVar
-
-F = TypeVar("F", bound=Callable[..., Any])
+from nettowel.exceptions import NettowelDependencyMissing
 
 
-def needs(needs: bool, error_msg: str) -> Callable[[F], F]:
-    """
-    Decorator to check if the dependencies are installed.
-    """
-
-    def decorator_need(func: F) -> F:
-        if not needs:
-            raise Exception(error_msg)
-        return func
-
-    return decorator_need
+def needs(needs: bool, package: str, group: str) -> bool:
+    if not needs:
+        raise NettowelDependencyMissing(package, group)
+    return True
