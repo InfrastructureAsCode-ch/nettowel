@@ -1,0 +1,9 @@
+{{ number | abs }}
+{{ text | trim }}
+{{ mylist | first}}
+{{ name | default("test") }}
+
+{% for interface in interfaces %}
+interface {{ interface.name }}
+ ip address {{ interface.addr }} {{ interface.mask}}
+{% endfor %}
