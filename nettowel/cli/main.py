@@ -48,7 +48,11 @@ def help(
         ("infrastructureascode.ch", "https://infrastructureascode.ch/?from=nettowel"),
     ]:
         qrcodes.append(
-            Panel(get_qrcode(data), title=f"[yellow]{title}", border_style="blue")
+            Panel(
+                get_qrcode(data),
+                title=f"[yellow][link={data}]{title}[/link]",
+                border_style="blue",
+            )
         )
     qr_panels = Columns(qrcodes, equal=True)
     title_panel = Panel(
