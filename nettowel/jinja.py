@@ -16,6 +16,14 @@ NOT_INSTALLED = (
 
 @needs(JINJA_INSTALLED, NOT_INSTALLED)
 def validate_template(template: str) -> Tuple[bool, Dict[str, Union[str, int, None]]]:
+    """Validate jinja2 template
+
+    Args:
+        template (str): jinja2 template
+
+    Returns:
+        Tuple[bool, Dict[str, Union[str, int, None]]]: (True, {}) if template is valid. (False, {"message": ..., "lineno": ..., "line": ...})
+    """
     try:
         Environment().parse(template)
         return True, dict()
@@ -38,6 +46,18 @@ def render_template(
     lstrip_blocks: bool = False,
     keep_trailing_newline: bool = False,
 ) -> str:
+    """Rendering jinja2 template
+
+    Args:
+        template (str): Jinja template
+        data (Any): Data to add to the rendering context
+        trim_blocks (bool, optional): If this is set to True the first newline after a block is removed. Defaults to False.
+        lstrip_blocks (bool, optional): If this is set to True leading spaces and tabs are stripped from the start of a line to a block. Defaults to False.
+        keep_trailing_newline (bool, optional): Preserve the trailing newline when rendering templates. Defaults to False.
+
+    Returns:
+        str: Rendered template
+    """
     jinja_env = Environment(
         trim_blocks=trim_blocks,
         lstrip_blocks=lstrip_blocks,
@@ -50,6 +70,17 @@ def render_template(
 
 @needs(JINJA_INSTALLED, NOT_INSTALLED)
 def get_variables(template: str) -> Any:
+    """Get a list of variables with jinja2schema
+
+    Args:
+        template (str): Jinja template
+
+    Raises:
+        Exception: _description_
+
+    Returns:
+        Any: Return Dict with JSON Schema data
+    """
     try:
         from jinja2schema import infer, to_json_schema
     except ImportError:

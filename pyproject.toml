@@ -18,6 +18,7 @@ scrapli = {version = "^2022.1.30", optional = true}
 nornir = {version = "^3.2.0", optional = true}
 "ruamel.yaml" = "^0.17.21"
 jinja2schema = {version = "^0.1.4", optional = true}
+qrcode = "^7.3.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
