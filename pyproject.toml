@@ -17,6 +17,7 @@ netmiko = {version = "^3.4.0", optional = true}
 scrapli = {version = "^2022.1.30", optional = true}
 nornir = {version = "^3.2.0", optional = true}
 "ruamel.yaml" = "^0.17.21"
+jinja2schema = {version = "^0.1.4", optional = true}
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
@@ -25,7 +26,7 @@ mypy = "^0.931"
 
 [tool.poetry.extras]
 full = ["Jinja2", "ttp", "textfsm", "napalm", "netmiko", "scrapli", "nornir"]
-jinja = ["Jinja2"]
+jinja = ["Jinja2", "jinja2schema"]
 ttp = ["ttp"]
 textfsm = ["textfsm"]
 napalm = ["napalm"]

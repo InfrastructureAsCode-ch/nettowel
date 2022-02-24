@@ -49,5 +49,13 @@ def render_template(
 
 
 @needs(JINJA_INSTALLED, NOT_INSTALLED)
-def get_variables(template: str) -> None:
-    pass
+def get_variables(template: str) -> Any:
+    try:
+        from jinja2schema import infer, to_json_schema
+    except ImportError:
+        raise Exception(
+            "jinja2schema is not installed. Install it with pip: pip install nettowel[jinja]"
+        )
+
+    schema = infer(template)
+    return to_json_schema(schema)

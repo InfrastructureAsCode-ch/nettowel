@@ -1,4 +1,4 @@
-from re import template
+from re import L, template
 import sys
 import typer
 from typing import Any, Dict, List
@@ -8,6 +8,7 @@ from rich.panel import Panel
 from rich.columns import Columns
 from rich.console import Group
 from rich.syntax import Syntax
+from rich.tree import Tree
 from rich.scope import render_scope
 from rich.json import JSON
 
@@ -17,6 +18,68 @@ from nettowel.cli._common import get_members, cleanup_dict
 from nettowel.jinja import render_template, validate_template, get_variables
 
 app = typer.Typer(help="Templating (Jinja2) functions")
+
+
+def _variable_tree(data: Dict[str, Any]) -> Tree:
+    root = Tree(":books: Variables", style="blue", guide_style="blue")
+
+    types = {
+        "boolean": ":keycap_10: boolean",
+        "null": ":no_entry: null",
+        "number": ":input_numbers: number",
+        "string": ":newspaper: string",
+        "error": "[red]Type unknown[/]",
+    }
+
+    def add(tree: Tree, data: Dict[str, Any], required: bool = True) -> Tree:
+        property_type = data.get("type")
+        name = data.get("title")
+        text = (
+            f"[blue]{name} [i](required)[/]"
+            if required
+            else f"[green]{name} [i](optional)[/]"
+        )
+        if property_type in ["string", "boolean", "number", "null"]:
+            tree.add(Group(text, f'[yellow]{types[data.get("type", "error")]}[/]'))
+
+        if "anyOf" in data:
+            any_of = Tree("anyOf", style="yellow", guide_style="yellow")
+            [
+                any_of.add(types[x.get("type", "error")])
+                for x in data.get("anyOf", dict())
+            ]
+            tree.add(Group(text, any_of))
+
+        if property_type == "array":
+            items = data.get("items", dict())
+            if items.get("type") == "object":
+                color = "blue" if required else "green"
+                tree.add(
+                    Group(
+                        text,
+                        add(
+                            Tree(
+                                ":open_book: object", style="yellow", guide_style=color
+                            ),
+                            items,
+                        ),
+                    )
+                )
+            else:
+                any_of_array = items.get("anyOf")
+                array = Tree("array (anyOf)", style="yellow", guide_style="yellow")
+                [array.add(types[x.get("type", "error")]) for x in any_of_array]
+                tree.add(Group(text, array))
+
+        if property_type == "object":
+            for property, value in data.get("properties", dict()).items():
+                add(tree, value, property in data.get("required", list()))
+
+        return tree
+
+    for property, value in data.get("properties", dict()).items():
+        add(root, value, property in data.get("required", list()))
+    return root
 
 
 @app.command()
@@ -145,7 +208,7 @@ def render(
         typer.Exit(0)
 
     except ValueError as exc:
-        typer.echo(exc)
+        typer.echo(exc, err=True)
         typer.Exit(1)
 
 
@@ -201,17 +264,40 @@ def validate(
         typer.Exit(0)
 
     except ValueError:
-        typer.echo("Error")
+        typer.echo("Error", err=True)
         typer.Exit(1)
 
 
 @app.command()
 def variables(
     ctx: typer.Context,
-    template: str,
+    template_file_name: typer.FileText = typer.Argument(
+        ...,
+        exists=True,
+        file_okay=True,
+        dir_okay=False,
+        readable=True,
+        resolve_path=True,
+        allow_dash=True,
+        metavar="TEMPLATE",
+    ),
     json: bool = typer.Option(default=False, help="json output"),
 ) -> None:
-    typer.echo("Get template variables")
+
+    try:
+        if template_file_name == "-":
+            template_text = sys.stdin.read()
+        else:
+            with open(template_file_name) as template_file:  # type: ignore
+                template_text = template_file.read()
+        result = get_variables(template_text)
+        if json:
+            data = {"result": result}
+            print_json(data=data)
+        else:
+            print(_variable_tree(result))
+    except Exception:
+        raise
 
 
 if __name__ == "__main__":
