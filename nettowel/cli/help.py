@@ -19,4 +19,4 @@ def get_qrcode(data: str) -> str:
     out = StringIO()
     qr.print_ascii(out)
     out.seek(0)
-    return out.read()
+    return out.read().rstrip("\n")
