@@ -46,7 +46,7 @@ def render_template(
 
     Args:
         template (str): Jinja template
-        data (Any): Data to add to the rendering context
+        data (Any): Data to add to the rendering context. If data is not a dictionary it will be stored in one under the key 'data'
         trim_blocks (bool, optional): If this is set to True the first newline after a block is removed. Defaults to False.
         lstrip_blocks (bool, optional): If this is set to True leading spaces and tabs are stripped from the start of a line to a block. Defaults to False.
         keep_trailing_newline (bool, optional): Preserve the trailing newline when rendering templates. Defaults to False.
@@ -62,6 +62,9 @@ def render_template(
         # extensions=[],
         undefined=Undefined,
     )
+    if not isinstance(data, dict):
+        data = {"data": data}
+
     return jinja_env.from_string(template).render(**data)
 
 

@@ -1,7 +1,6 @@
 import sys
 import typer
 from typing import List
-from rich import inspect as rich_inspect
 from rich import print_json, print
 
 from rich.json import JSON
@@ -9,7 +8,6 @@ from rich.panel import Panel
 from rich.columns import Columns
 from rich.syntax import Syntax
 
-from nettowel.yaml import load as yaml_load
 from nettowel.ttp import render_template
 
 
@@ -19,16 +17,6 @@ app = typer.Typer(help="TTP templating functions")
 @app.command()
 def render(
     ctx: typer.Context,
-    template_file_name: typer.FileText = typer.Argument(
-        ...,
-        exists=True,
-        file_okay=True,
-        dir_okay=False,
-        readable=True,
-        resolve_path=True,
-        allow_dash=True,
-        metavar="TEMPLATE",
-    ),
     data_file_name: typer.FileText = typer.Argument(
         ...,
         exists=True,
@@ -38,6 +26,18 @@ def render(
         resolve_path=True,
         allow_dash=True,
         metavar="DATA",
+        help="RAW data like CLI show command outputs or configuration snippets",
+    ),
+    template_file_name: typer.FileText = typer.Argument(
+        ...,
+        exists=True,
+        file_okay=True,
+        dir_okay=False,
+        readable=True,
+        resolve_path=True,
+        allow_dash=True,
+        metavar="TEMPLATE",
+        help="TTP template used to get structured data from the raw data",
     ),
     json: bool = typer.Option(default=False, help="json output"),
     only_result: bool = typer.Option(False, "--print-result-only", help="Raw output"),

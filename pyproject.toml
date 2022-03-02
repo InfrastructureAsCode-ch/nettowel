@@ -37,6 +37,7 @@ nornir = ["nornir"]
 
 [tool.poetry.scripts]
 nettowel = 'nettowel.cli.main:run'
+nt = 'nettowel.cli.main:run'
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

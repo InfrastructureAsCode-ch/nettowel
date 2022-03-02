@@ -12,14 +12,13 @@ NOT_INSTALLED = "TTP is not installed. Install it with pip: pip install nettowel
 
 
 def render_template(
-    template: str,
     data: str,
+    template: str,
 ) -> Any:
     try:
         parser = ttp(data=data, template=template)
         parser.parse()
-
-        results = parser.result()[0]
+        results = parser.result(structure="flat_list")
     except Exception as exc:
         raise exc
     return results
