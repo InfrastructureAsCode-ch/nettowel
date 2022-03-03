@@ -1,3 +1,6 @@
+from typing import Any
+from nettowel._common import needs
+
 try:
     from ttp import ttp
 
@@ -6,4 +9,16 @@ try:
 except ImportError:
     TTP_INSTALLED = False
 
-NOT_INSTALLED = "TTP is not installed. Install it with pip: pip install nettowel[ttp]"
+
+def render_template(
+    data: str,
+    template: str,
+) -> Any:
+    needs(TTP_INSTALLED, "TTP", "ttp")
+    try:
+        parser = ttp(data=data, template=template)
+        parser.parse()
+        results = parser.result(structure="flat_list")
+    except Exception as exc:
+        raise exc
+    return results

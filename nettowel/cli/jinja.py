@@ -12,9 +12,8 @@ from rich.tree import Tree
 from rich.scope import render_scope
 from rich.json import JSON
 
-
+from nettowel.exceptions import NettowelDependencyMissing
 from nettowel.yaml import load as yaml_load
-from nettowel.cli._common import get_members, cleanup_dict
 from nettowel.jinja import render_template, validate_template, get_variables
 
 app = typer.Typer(help="Templating (Jinja2) functions")
@@ -94,6 +93,7 @@ def render(
         resolve_path=True,
         allow_dash=True,
         metavar="TEMPLATE",
+        help="Jinja template file",
     ),
     data_file_name: typer.FileText = typer.Argument(
         ...,
@@ -104,10 +104,19 @@ def render(
         resolve_path=True,
         allow_dash=True,
         metavar="DATA",
+        help="Data file in YAML or JSON",
     ),
-    trim_blocks: bool = typer.Option(False, "--trim-blocks"),
-    lstrip_blocks: bool = typer.Option(False, "--lstrip-blocks"),
-    keep_trailing_newline: bool = typer.Option(False, "--keep-trailing-newline"),
+    trim_blocks: bool = typer.Option(
+        False, "--trim-blocks", help="Remove first newline after a block"
+    ),
+    lstrip_blocks: bool = typer.Option(
+        False,
+        "--lstrip-blocks",
+        help="Stripping leading spaces and tabs from the start of a line to a block",
+    ),
+    keep_trailing_newline: bool = typer.Option(
+        False, "--keep-trailing-newline", help="Preserve the trailing newline"
+    ),
     json: bool = typer.Option(False, "--json", help="JSON output"),
     raw: bool = typer.Option(False, "--raw", help="Raw output"),
     only_result: bool = typer.Option(False, "--print-result-only", help="Raw output"),
@@ -207,8 +216,8 @@ def render(
             print(Columns(panels, equal=True))
         typer.Exit(0)
 
-    except ValueError as exc:
-        typer.echo(exc, err=True)
+    except NettowelDependencyMissing as exc:
+        typer.echo(str(exc), err=True)
         typer.Exit(1)
 
 
@@ -224,6 +233,7 @@ def validate(
         resolve_path=True,
         allow_dash=True,
         metavar="TEMPLATE",
+        help="Jinja template file",
     ),
     json: bool = typer.Option(default=False, help="json output"),
 ) -> None:
@@ -263,8 +273,8 @@ def validate(
             typer.Exit(1)
         typer.Exit(0)
 
-    except ValueError:
-        typer.echo("Error", err=True)
+    except NettowelDependencyMissing as exc:
+        typer.echo(str(exc), err=True)
         typer.Exit(1)
 
 
@@ -280,6 +290,7 @@ def variables(
         resolve_path=True,
         allow_dash=True,
         metavar="TEMPLATE",
+        help="Jinja template file",
     ),
     json: bool = typer.Option(default=False, help="json output"),
 ) -> None:
@@ -296,8 +307,9 @@ def variables(
             print_json(data=data)
         else:
             print(_variable_tree(result))
-    except Exception:
-        raise
+    except NettowelDependencyMissing as exc:
+        typer.echo(str(exc), err=True)
+        typer.Exit(1)
 
 
 if __name__ == "__main__":
