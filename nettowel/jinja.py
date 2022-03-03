@@ -1,5 +1,5 @@
 from typing import Any, Tuple, Dict, Union
-from nettowel.exceptions import NettowelDependencyMissing
+from nettowel.exceptions import NettowelDependencyMissing, NettowelSyntaxError
 from nettowel._common import needs
 
 try:
@@ -65,7 +65,10 @@ def render_template(
     if not isinstance(data, dict):
         data = {"data": data}
 
-    return jinja_env.from_string(template).render(**data)
+    try:
+        return jinja_env.from_string(template).render(**data)
+    except exceptions.TemplateSyntaxError as exc:
+        raise NettowelSyntaxError(str(exc))
 
 
 def get_variables(template: str) -> Any:

@@ -12,7 +12,7 @@ from rich.tree import Tree
 from rich.scope import render_scope
 from rich.json import JSON
 
-from nettowel.exceptions import NettowelDependencyMissing
+from nettowel.exceptions import NettowelDependencyMissing, NettowelSyntaxError
 from nettowel.yaml import load as yaml_load
 from nettowel.jinja import render_template, validate_template, get_variables
 
@@ -219,6 +219,9 @@ def render(
     except NettowelDependencyMissing as exc:
         typer.echo(str(exc), err=True)
         typer.Exit(1)
+    except NettowelSyntaxError as exc:
+        typer.echo(exc, err=True)
+        typer.Exit(2)
 
 
 @app.command()
