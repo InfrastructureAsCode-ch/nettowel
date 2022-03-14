@@ -3,11 +3,11 @@ from rich import print_json, print
 from rich.markdown import Markdown
 from rich.prompt import Prompt
 
-from nettowel.cli._common import get_members, cleanup_dict
+from nettowel.cli._common import get_typer_app
 from nettowel.exceptions import NettowelDependencyMissing
 from nettowel.netmiko import get_device_types, send_command
 
-app = typer.Typer(help="Netmiko functions")
+app = get_typer_app(help="Netmiko functions")
 
 
 @app.command()

@@ -8,6 +8,7 @@ from rich.console import Group
 from rich import print
 
 from nettowel import __version__ as version
+from nettowel.cli._common import get_typer_app
 from nettowel.cli.ip import app as ipaddress_app
 from nettowel.cli.jinja import app as jinja_app
 from nettowel.cli.ttp import app as ttp_app
@@ -20,7 +21,7 @@ from nettowel.cli.netmiko import app as netmiko_app
 from nettowel.cli.scrapli import app as scrapli_app
 from nettowel.cli.help import get_qrcode, HELP_MARKDOWN
 
-app = typer.Typer(help="Awesome collection of network automation functions")
+app = get_typer_app(help="Awesome collection of network automation functions")
 
 for subapp, name in [
     (ipaddress_app, "ipaddress"),

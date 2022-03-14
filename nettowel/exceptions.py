@@ -14,5 +14,6 @@ class NettowelDependencyMissing(NettowelException):
         self.msg = msg_format.format(package=package, group=extra_group)
         super().__init__(self.msg)
 
+
 class NettowelSyntaxError(NettowelException):
     ...

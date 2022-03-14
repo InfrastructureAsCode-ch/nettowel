@@ -3,12 +3,12 @@ import typer
 from rich import inspect as rich_inspect
 from rich import print_json
 
-from nettowel.cli._common import get_members, cleanup_dict
+from nettowel.cli._common import get_members, cleanup_dict, get_typer_app
 
 from ipaddress import ip_address, ip_network, IPv4Address, IPv6Address
 
 
-app = typer.Typer(help="IP Address tools")
+app = get_typer_app(help="IP Address tools")
 
 
 @app.command()

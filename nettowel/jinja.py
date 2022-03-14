@@ -1,13 +1,18 @@
 from typing import Any, Tuple, Dict, Union
 from nettowel.exceptions import NettowelDependencyMissing, NettowelSyntaxError
+from nettowel.logging import log
 from nettowel._common import needs
+
+_module = "jinja2"
 
 try:
     from jinja2 import Environment, Undefined, exceptions
 
+    log.debug("Successfully imported %s", _module)
     JINJA_INSTALLED = True
 
 except ImportError:
+    log.warning("Failed to import %s", _module)
     JINJA_INSTALLED = False
 
 
@@ -20,7 +25,7 @@ def validate_template(template: str) -> Tuple[bool, Dict[str, Union[str, int, No
     Returns:
         Tuple[bool, Dict[str, Union[str, int, None]]]: (True, {}) if template is valid. (False, {"message": ..., "lineno": ..., "line": ...})
     """
-    needs(JINJA_INSTALLED, "Jinja2", "jinja")
+    needs(JINJA_INSTALLED, "Jinja2", _module)
     try:
         Environment().parse(template)
         return True, dict()
@@ -54,7 +59,7 @@ def render_template(
     Returns:
         str: Rendered template
     """
-    needs(JINJA_INSTALLED, "Jinja2", "jinja")
+    needs(JINJA_INSTALLED, "Jinja2", _module)
     jinja_env = Environment(
         trim_blocks=trim_blocks,
         lstrip_blocks=lstrip_blocks,
@@ -83,11 +88,11 @@ def get_variables(template: str) -> Any:
     Returns:
         Any: Return Dict with JSON Schema data
     """
-    needs(JINJA_INSTALLED, "Jinja2", "jinja")
+    needs(JINJA_INSTALLED, "Jinja2", _module)
     try:
         from jinja2schema import infer, to_json_schema
     except ImportError:
-        raise NettowelDependencyMissing("jinja2schema", "jinja")
+        raise NettowelDependencyMissing("jinja2schema", _module)
 
     schema = infer(template)
     return to_json_schema(schema)
