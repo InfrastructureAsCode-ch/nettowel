@@ -8,10 +8,11 @@ from rich.panel import Panel
 from rich.columns import Columns
 from rich.syntax import Syntax
 
+from nettowel.cli._common import get_typer_app
 from nettowel.ttp import render_template
 
 
-app = typer.Typer(help="TTP templating functions")
+app = get_typer_app(help="TTP templating functions")
 
 
 @app.command()

@@ -2,10 +2,10 @@ import typer
 from rich import inspect as rich_inspect
 from rich import print_json
 
-from nettowel.cli._common import get_members, cleanup_dict
+from nettowel.cli._common import get_members, cleanup_dict, get_typer_app
 
 
-app = typer.Typer(help="Templating (Jinja2) functions")
+app = get_typer_app(help="Templating (Jinja2) functions")
 
 
 @app.command()

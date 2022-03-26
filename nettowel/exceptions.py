@@ -13,3 +13,11 @@ class NettowelDependencyMissing(NettowelException):
         self.extra_group = extra_group
         self.msg = msg_format.format(package=package, group=extra_group)
         super().__init__(self.msg)
+
+
+class NettowelSyntaxError(NettowelException):
+    ...
+
+
+class NettowelTimeoutError(NettowelException):
+    ...
