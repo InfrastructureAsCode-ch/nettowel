@@ -17,3 +17,7 @@ class NettowelDependencyMissing(NettowelException):
 
 class NettowelSyntaxError(NettowelException):
     ...
+
+
+class NettowelTimeoutError(NettowelException):
+    ...
