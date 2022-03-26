@@ -1,8 +1,8 @@
 # nettowel
 Collection of useful network automation functions 
 
-`nettowel` is under heavy construction and not production ready. Feedback is highly appreciated.
-{: .alert .alert-warning}
+> ⚠️ `nettowel` is under heavy construction and not production ready. Feedback is highly appreciated.
+
 
 ## Install
 
