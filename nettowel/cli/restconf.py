@@ -80,7 +80,8 @@ def _send_request(
         typer.Exit(0)
     except NettowelRestconfError as exc:
         typer.echo(str(exc), err=True)
-        typer.echo(exc.server_msg, err=True)
+        if exc.server_msg:
+            typer.echo(exc.server_msg, err=True)
         typer.Exit(1)
 
 

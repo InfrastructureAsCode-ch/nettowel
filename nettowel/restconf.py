@@ -44,7 +44,15 @@ def send_request(
         if response.status_code == 204:
             return "204 No Content"
         return response.json() if not return_xml else response.text
+    except requests.exceptions.ConnectionError as exc:
+        raise NettowelRestconfError(str(exc), None)
     except requests.exceptions.RequestException as exc:
-        response = exc.response.text if return_xml else exc.response.json()
+        if exc.request:
+            if not exc.response.text:
+                response = None
+            else:
+                response = exc.response.text if return_xml else exc.response.json()
+        else:
+            response = None
         log.debug(response)
         raise NettowelRestconfError(str(exc), response)
