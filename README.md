@@ -53,86 +53,85 @@ Many features are not implemented yet and many features will come.
 
 
 
-<details>
-<summary>Jinja2</summary>
+### Jinja2
 
-### render
+#### render
 
 ![jinja rendering 1](imgs/jinja-render-3.png)
 
 ![jinja rendering 2](imgs/jinja-render-1.png)
 
-### validate
+#### validate
 
 ![jinja validate](imgs/jinja-validate.png)
 
-### variables
+#### variables
 
 ![jinja variables](imgs/jinja-variables.png)
 
-</details>
 
-<details>
-<summary>TTP</summary>
+### TTP
 
-### render
+#### render
 
 ![ttp render](imgs/ttp-render.png)
 
-</details>
+### Netmiko
 
-<details>
-<summary>Netmiko</summary>
-
-### cli
+#### cli
 
 ![netmiko cli](imgs/netmiko-cli.png)
 
-### autodetect
+#### autodetect
 
 ![netmiko autodetect](imgs/netmiko-autodetect.png)
 
-### device-types
+#### device-types
 
 ![netmiko device types](imgs/netmiko-device-types.png)
 
-</details>
 
-<details>
-<summary>ipaddress</summary>
+### RESTCONF
 
-### ip-info
+#### get
+
+![restconf get](imgs/restconf-get.png)
+
+#### patch, delete
+
+![restconf patch delete](imgs/restconf-patch-delete.png)
+
+#### post, put
+
+![restconf post put](imgs/restconf-post-put.png)
+
+### ipaddress
+
+#### ip-info
 
 ![ip info](imgs/ip-info.png)
 
-### network-info
+#### network-info
 
 ![network info](imgs/network-info.png)
 
-</details>
 
-<details>
-<summary>Help</summary>
+### Help
 
 ![Help QRcode](imgs/nettowel-help.png)
 
-</details>
 
-<details>
-<summary>Settings</summary>
+### Settings
 
 A `dotenv` file can be used as a settings file. It also be provided an `dotenv` file with the option `--dotenv`.
 
 ![environment settings](imgs/env-settings.png)
 
-</details>
 
-<details>
-<summary>Piping</summary>
+### Piping
 
 ![piping](imgs/piping.png)
 
-</details>
 
 
 ## Building CLI Docs

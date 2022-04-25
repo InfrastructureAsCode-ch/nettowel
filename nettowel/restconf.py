@@ -43,6 +43,10 @@ def send_request(
         response.raise_for_status()
         if response.status_code == 204:
             return "204 No Content"
+        if response.status_code == 201:
+            return "201 Created"
+        if response.text == "":
+            return "Empty Response"
         return response.json() if not return_xml else response.text
     except requests.exceptions.ConnectionError as exc:
         raise NettowelRestconfError(str(exc), None)

@@ -73,7 +73,7 @@ def _send_request(
             print(
                 Panel(
                     output,
-                    title=f"[yellow][bold]GET[/bold] {path}",
+                    title=f"[yellow][bold]{method}[/bold] {path}",
                     border_style="blue",
                 )
             )
