@@ -19,6 +19,7 @@ from nettowel.cli.nornir import app as nornir_app
 from nettowel.cli.napalm import app as napalm_app
 from nettowel.cli.netmiko import app as netmiko_app
 from nettowel.cli.scrapli import app as scrapli_app
+from nettowel.cli.restconf import app as restconf_app
 from nettowel.cli.help import get_qrcode, HELP_MARKDOWN
 
 app = get_typer_app(help="Awesome collection of network automation functions")
@@ -34,6 +35,7 @@ for subapp, name in [
     (napalm_app, "napalm"),
     (netmiko_app, "netmiko"),
     (scrapli_app, "scrapli"),
+    (restconf_app, "restconf"),
 ]:
     app.add_typer(subapp, name=name)
 

@@ -20,11 +20,13 @@ nornir = {version = "^3.2.0", optional = true}
 jinja2schema = {version = "^0.1.4", optional = true}
 qrcode = "^7.3.1"
 python-dotenv = "^0.20.0"
+requests = "^2.27.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
 pytest = "^7.0.1"
 mypy = "^0.942"
+types-requests = "^2.27.20"
 
 [tool.poetry.extras]
 full = ["Jinja2", "ttp", "textfsm", "napalm", "netmiko", "scrapli", "nornir"]
