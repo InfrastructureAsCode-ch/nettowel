@@ -54,6 +54,9 @@ def send_command(
             key_file=key_file,
             session_log=session_log,
         )
+        if not device.check_enable_mode():
+            device.enable()
+
         return str(
             device.send_command(
                 cmd,

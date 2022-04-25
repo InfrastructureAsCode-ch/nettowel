@@ -1,3 +1,6 @@
+from typing import Any
+
+
 class NettowelException(Exception):
     ...
 
@@ -21,3 +24,18 @@ class NettowelSyntaxError(NettowelException):
 
 class NettowelTimeoutError(NettowelException):
     ...
+
+
+class NettowelUsageError(NettowelException):
+    ...
+
+
+class NettowelRestconfError(NettowelException):
+    def __init__(
+        self,
+        error_str: str,
+        server_msg: Any,
+    ) -> None:
+        self.error_str = error_str
+        self.server_msg = server_msg
+        super().__init__(self.error_str)

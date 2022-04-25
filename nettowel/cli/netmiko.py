@@ -1,14 +1,16 @@
 from typing import Tuple
+from click import style
 import typer
 from rich import print_json, print
 from rich.markdown import Markdown
 from rich.prompt import Prompt
+from rich.panel import Panel
+from rich.text import Text
+from rich.highlighter import ReprHighlighter
 
 from nettowel.cli._common import get_typer_app
 from nettowel.exceptions import (
-    NettowelDependencyMissing,
     NettowelException,
-    NettowelTimeoutError,
 )
 from nettowel.netmiko import get_device_types, send_command
 from nettowel.netmiko import autodetect as netmiko_autodetect
@@ -16,11 +18,32 @@ from nettowel.netmiko import autodetect as netmiko_autodetect
 app = get_typer_app(help="Netmiko functions")
 
 
+_highlight_words = [
+    (
+        [
+            "Idle",
+            "Down",
+            "down",
+            "errors",
+            "error",
+            "collisions",
+            "drops",
+            "failures",
+            "failure",
+        ],
+        "dark_red",
+    ),
+    (["never"], "orange4"),
+]
+
+
 @app.command()
 def cli(
     ctx: typer.Context,
-    host: str = typer.Argument(..., help="Hostname or IP address"),
     cmd: str = typer.Argument(..., help="CLI command to execute on device"),
+    host: str = typer.Option(
+        ..., help="Hostname or IP address", envvar="NETTOWEL_HOST"
+    ),
     device_type: str = typer.Option(
         ..., help="Netmiko device type", envvar="NETTOWEL_DEVICE_TYPE"
     ),
@@ -75,6 +98,7 @@ def cli(
         None, help="File to store session log", envvar="NETTOWEL_SESSION_LOG"
     ),
     json: bool = typer.Option(default=False, help="json output"),
+    raw: bool = typer.Option(default=False, help="raw output"),
 ) -> None:
     try:
         if not any([user, ssh_config_file]):
@@ -100,8 +124,19 @@ def cli(
         )
         if json:
             print_json(data={"cmd": cmd, "result": result})
-        else:
+        elif raw:
             print(result)
+        else:
+            output = ReprHighlighter()(Text(result))
+            for words, style in _highlight_words:
+                output.highlight_words(words, style)
+            print(
+                Panel(
+                    output,
+                    title=f"[yellow][bold]{host}[/bold] {cmd}",
+                    border_style="blue",
+                )
+            )
         typer.Exit(0)
 
     except NettowelException as exc:
