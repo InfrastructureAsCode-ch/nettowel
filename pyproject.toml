@@ -4,6 +4,14 @@ version = "0.2.0"
 description = "Network Automation Collection"
 authors = ["ubaumann <github@m.ubaumann.ch>"]
 license = "Apache 2.0"
+readme = "README.md"
+repository = "https://github.com/InfrastructureAsCode-ch/nettowel/tree"
+classifiers = [
+        "License :: OSI Approved :: Apache Software License",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
