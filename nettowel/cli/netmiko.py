@@ -6,9 +6,7 @@ from rich.prompt import Prompt
 
 from nettowel.cli._common import get_typer_app
 from nettowel.exceptions import (
-    NettowelDependencyMissing,
     NettowelException,
-    NettowelTimeoutError,
 )
 from nettowel.netmiko import get_device_types, send_command
 from nettowel.netmiko import autodetect as netmiko_autodetect
