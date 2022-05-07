@@ -137,11 +137,11 @@ def cli(
                     border_style="blue",
                 )
             )
-        typer.Exit(0)
+        raise typer.Exit(0)
 
     except NettowelException as exc:
         typer.echo(str(exc), err=True)
-        typer.Exit(1)
+        raise typer.Exit(1)
 
 
 @app.command()
@@ -156,11 +156,11 @@ def device_types(
         else:
             output = Markdown("\n".join([f"- {x}" for x in types]))
             print(output)
-        typer.Exit(0)
+        raise typer.Exit(0)
 
     except NettowelException as exc:
         typer.echo(str(exc), err=True)
-        typer.Exit(1)
+        raise typer.Exit(1)
 
 
 @app.command()
@@ -216,11 +216,11 @@ def autodetect(
             print_json(data={"result": result})
         else:
             print(result)
-        typer.Exit(0)
+        raise typer.Exit(0)
 
     except NettowelException as exc:
         typer.echo(str(exc), err=True)
-        typer.Exit(1)
+        raise typer.Exit(1)
 
 
 if __name__ == "__main__":

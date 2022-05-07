@@ -29,6 +29,15 @@ jinja2schema = {version = "^0.1.4", optional = true}
 qrcode = "^7.3.1"
 python-dotenv = "^0.20.0"
 requests = "^2.27.1"
+nornir-napalm = {version = "^0.2.0", optional = true}
+nornir-scrapli = {version = "^2022.1.30", optional = true}
+nornir-utils = {version = "^0.2.0", optional = true}
+nornir-jinja2 = {version = "^0.2.0", optional = true}
+nornir-pyxl = {version = "^1.0.1", optional = true}
+nornir-http = {version = "^0.1.1", optional = true}
+nornir-netmiko = {git = "https://github.com/ktbyers/nornir_netmiko.git", rev = "develop", optional = true}
+nornir-rich = {git = "https://github.com/InfrastructureAsCode-ch/nornir_rich.git", rev = "develop", optional = true}
+pandas = {version = "^1", optional = true}
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
@@ -37,14 +46,15 @@ mypy = "^0.942"
 types-requests = "^2.27.20"
 
 [tool.poetry.extras]
-full = ["Jinja2", "ttp", "textfsm", "napalm", "netmiko", "scrapli", "nornir"]
+full = ["Jinja2", "ttp", "textfsm", "napalm", "netmiko", "scrapli", "nornir", "pandas"]
 jinja = ["Jinja2", "jinja2schema"]
 ttp = ["ttp"]
 textfsm = ["textfsm"]
 napalm = ["napalm"]
 netmiko = ["netmiko"]
 scrapli = ["scrapli"]
-nornir = ["nornir"]
+nornir = ["nornir", "nornir-napalm", "nornir-scrapli", "nornir-utils", "nornir-jinja2", "nornir-pyxl", "nornir-http", "nornir-netmiko", "nornir-rich"]
+pandas = ["pandas"]
 
 [tool.poetry.scripts]
 nettowel = 'nettowel.cli.main:run'

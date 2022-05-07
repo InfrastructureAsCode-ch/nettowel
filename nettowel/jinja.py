@@ -94,5 +94,8 @@ def get_variables(template: str) -> Any:
     except ImportError:
         raise NettowelDependencyMissing("jinja2schema", _module)
 
-    schema = infer(template)
+    try:
+        schema = infer(template)
+    except exceptions.TemplateSyntaxError as exc:
+        raise NettowelSyntaxError(str(exc))
     return to_json_schema(schema)

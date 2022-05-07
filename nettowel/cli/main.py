@@ -1,3 +1,4 @@
+from pathlib import Path
 import typer
 
 from rich.panel import Panel
@@ -8,7 +9,7 @@ from rich.console import Group
 from rich import print
 
 from nettowel import __version__ as version
-from nettowel.cli._common import get_typer_app
+from nettowel.cli._common import get_typer_app, auto_complete_paths
 from nettowel.cli.ip import app as ipaddress_app
 from nettowel.cli.jinja import app as jinja_app
 from nettowel.cli.ttp import app as ttp_app
@@ -20,6 +21,7 @@ from nettowel.cli.napalm import app as napalm_app
 from nettowel.cli.netmiko import app as netmiko_app
 from nettowel.cli.scrapli import app as scrapli_app
 from nettowel.cli.restconf import app as restconf_app
+from nettowel.cli.pandas import app as pandas_app
 from nettowel.cli.help import get_qrcode, HELP_MARKDOWN
 
 app = get_typer_app(help="Awesome collection of network automation functions")
@@ -36,6 +38,7 @@ for subapp, name in [
     (netmiko_app, "netmiko"),
     (scrapli_app, "scrapli"),
     (restconf_app, "restconf"),
+    (pandas_app, "pandas"),
 ]:
     app.add_typer(subapp, name=name)
 

@@ -25,11 +25,11 @@ def ip_info(
             print_json(data=cleanup_dict(data))
         else:
             rich_inspect(ip_obj)
-        typer.Exit(0)
+        raise typer.Exit(0)
 
     except ValueError as exc:
-        typer.echo(exc)
-        typer.Exit(1)
+        typer.echo(exc, err=True)
+        raise typer.Exit(1)
 
 
 @app.command()
@@ -48,11 +48,11 @@ def network_info(
             print_json(data=cleanup_dict(data))
         else:
             rich_inspect(net_obj)
-        typer.Exit(0)
+        raise typer.Exit(0)
 
     except ValueError as exc:
-        typer.echo(exc)
-        typer.Exit(1)
+        typer.echo(exc, err=True)
+        raise typer.Exit(1)
 
 
 if __name__ == "__main__":

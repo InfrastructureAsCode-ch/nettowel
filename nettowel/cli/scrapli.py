@@ -20,11 +20,11 @@ def cli(
             print_json(data=None)
         else:
             rich_inspect(None)
-        typer.Exit(0)
+        raise typer.Exit(0)
 
     except NotImplementedError as exc:
         typer.echo(exc)
-        typer.Exit(1)
+        raise typer.Exit(1)
 
 
 if __name__ == "__main__":
