@@ -1,4 +1,3 @@
-from re import L, template
 import sys
 import typer
 from typing import Any, Dict, List
@@ -13,9 +12,13 @@ from rich.scope import render_scope
 from rich.json import JSON
 
 from nettowel.exceptions import NettowelDependencyMissing, NettowelSyntaxError
-from nettowel.yaml import load as yaml_load
 from nettowel.jinja import render_template, validate_template, get_variables
-from nettowel.cli._common import get_typer_app
+from nettowel.cli._common import (
+    get_typer_app,
+    auto_complete_paths,
+    read_yaml,
+    read_text,
+)
 
 app = get_typer_app(help="Templating (Jinja2) functions")
 
@@ -95,6 +98,7 @@ def render(
         allow_dash=True,
         metavar="TEMPLATE",
         help="Jinja template file",
+        autocompletion=auto_complete_paths,
     ),
     data_file_name: typer.FileText = typer.Argument(
         ...,
@@ -106,6 +110,7 @@ def render(
         allow_dash=True,
         metavar="DATA",
         help="Data file in YAML or JSON",
+        autocompletion=auto_complete_paths,
     ),
     trim_blocks: bool = typer.Option(
         False, "--trim-blocks", help="Remove first newline after a block"
@@ -119,8 +124,10 @@ def render(
         False, "--keep-trailing-newline", help="Preserve the trailing newline"
     ),
     json: bool = typer.Option(False, "--json", help="JSON output"),
-    raw: bool = typer.Option(False, "--raw", help="Raw output"),
-    only_result: bool = typer.Option(False, "--print-result-only", help="Raw output"),
+    raw: bool = typer.Option(False, "--raw", help="Raw result output"),
+    only_result: bool = typer.Option(
+        False, "--print-result-only", help="Only print the result"
+    ),
     floating_panels: bool = typer.Option(
         False,
         "--floating-panels",
@@ -128,16 +135,8 @@ def render(
     ),
 ) -> None:
     try:
-        if template_file_name == "-":
-            template_text = sys.stdin.read()
-        else:
-            with open(template_file_name) as template_file:  # type: ignore
-                template_text = template_file.read()
-        if data_file_name == "-":
-            input_data = yaml_load(sys.stdin)
-        else:
-            with open(data_file_name) as data_file:  # type: ignore
-                input_data = yaml_load(data_file)
+        template_text = read_text(template_file_name)
+        input_data = read_yaml(data_file_name)
 
         result = render_template(
             template=template_text,
@@ -145,7 +144,7 @@ def render(
             trim_blocks=trim_blocks,
             lstrip_blocks=lstrip_blocks,
             keep_trailing_newline=keep_trailing_newline,
-        )
+        ).strip()
 
         if json:
             return_data = {
@@ -215,14 +214,14 @@ def render(
                 for p in panels:
                     p.height = height
             print(Columns(panels, equal=True))
-        typer.Exit(0)
+        raise typer.Exit(0)
 
     except NettowelDependencyMissing as exc:
         typer.echo(str(exc), err=True)
-        typer.Exit(1)
+        raise typer.Exit(1)
     except NettowelSyntaxError as exc:
         typer.echo(exc, err=True)
-        typer.Exit(2)
+        raise typer.Exit(2)
 
 
 @app.command()
@@ -238,15 +237,12 @@ def validate(
         allow_dash=True,
         metavar="TEMPLATE",
         help="Jinja template file",
+        autocompletion=auto_complete_paths,
     ),
     json: bool = typer.Option(default=False, help="json output"),
 ) -> None:
     try:
-        if template_file_name == "-":
-            template_text = sys.stdin.read()
-        else:
-            with open(template_file_name) as template_file:  # type: ignore
-                template_text = template_file.read()
+        template_text = read_text(template_file_name)
         result, data = validate_template(template_text)
         if json:
             data["valid"] = result
@@ -274,12 +270,12 @@ def validate(
                     Panel(pannel_group, border_style="red", title="ERROR", expand=False)
                 )
         if not result:
-            typer.Exit(1)
-        typer.Exit(0)
+            raise typer.Exit(1)
+        raise typer.Exit(0)
 
     except NettowelDependencyMissing as exc:
         typer.echo(str(exc), err=True)
-        typer.Exit(1)
+        raise typer.Exit(1)
 
 
 @app.command()
@@ -295,16 +291,13 @@ def variables(
         allow_dash=True,
         metavar="TEMPLATE",
         help="Jinja template file",
+        autocompletion=auto_complete_paths,
     ),
     json: bool = typer.Option(default=False, help="json output"),
 ) -> None:
 
     try:
-        if template_file_name == "-":
-            template_text = sys.stdin.read()
-        else:
-            with open(template_file_name) as template_file:  # type: ignore
-                template_text = template_file.read()
+        template_text = read_text(template_file_name)
         result = get_variables(template_text)
         if json:
             data = {"result": result}
@@ -313,7 +306,10 @@ def variables(
             print(_variable_tree(result))
     except NettowelDependencyMissing as exc:
         typer.echo(str(exc), err=True)
-        typer.Exit(1)
+        raise typer.Exit(1)
+    except NettowelSyntaxError as exc:
+        typer.echo(exc, err=True)
+        raise typer.Exit(2)
 
 
 if __name__ == "__main__":

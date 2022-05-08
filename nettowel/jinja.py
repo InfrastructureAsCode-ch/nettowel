@@ -3,7 +3,7 @@ from nettowel.exceptions import NettowelDependencyMissing, NettowelSyntaxError
 from nettowel.logging import log
 from nettowel._common import needs
 
-_module = "jinja2"
+_module = "jinja"
 
 try:
     from jinja2 import Environment, Undefined, exceptions
@@ -94,5 +94,8 @@ def get_variables(template: str) -> Any:
     except ImportError:
         raise NettowelDependencyMissing("jinja2schema", _module)
 
-    schema = infer(template)
+    try:
+        schema = infer(template)
+    except exceptions.TemplateSyntaxError as exc:
+        raise NettowelSyntaxError(str(exc))
     return to_json_schema(schema)

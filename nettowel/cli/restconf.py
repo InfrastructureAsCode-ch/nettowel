@@ -8,7 +8,7 @@ from rich.prompt import Prompt
 from rich.json import JSON
 from rich.panel import Panel
 
-from nettowel.cli._common import get_typer_app
+from nettowel.cli._common import get_typer_app, auto_complete_paths
 from nettowel.exceptions import (
     NettowelRestconfError,
 )
@@ -77,12 +77,12 @@ def _send_request(
                     border_style="blue",
                 )
             )
-        typer.Exit(0)
+        raise typer.Exit(0)
     except NettowelRestconfError as exc:
         typer.echo(str(exc), err=True)
         if exc.server_msg:
             typer.echo(exc.server_msg, err=True)
-        typer.Exit(1)
+        raise typer.Exit(1)
 
 
 @app.command()
@@ -201,6 +201,7 @@ def post(
         allow_dash=True,
         metavar="DATA",
         help="Data to send. Use '-' to read from stdin",
+        autocompletion=auto_complete_paths,
     ),
     host: str = typer.Option(
         ..., help="Hostname or IP address", envvar="NETTOWEL_HOST"
@@ -263,6 +264,7 @@ def PUT(
         allow_dash=True,
         metavar="DATA",
         help="Data to send. Use '-' to read from stdin",
+        autocompletion=auto_complete_paths,
     ),
     host: str = typer.Option(
         ..., help="Hostname or IP address", envvar="NETTOWEL_HOST"
@@ -325,6 +327,7 @@ def patch(
         allow_dash=True,
         metavar="DATA",
         help="Data to send. Use '-' to read from stdin",
+        autocompletion=auto_complete_paths,
     ),
     host: str = typer.Option(
         ..., help="Hostname or IP address", envvar="NETTOWEL_HOST"

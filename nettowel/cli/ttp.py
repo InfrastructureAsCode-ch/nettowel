@@ -8,7 +8,7 @@ from rich.panel import Panel
 from rich.columns import Columns
 from rich.syntax import Syntax
 
-from nettowel.cli._common import get_typer_app
+from nettowel.cli._common import get_typer_app, read_text, auto_complete_paths
 from nettowel.ttp import render_template
 
 
@@ -28,6 +28,7 @@ def render(
         allow_dash=True,
         metavar="DATA",
         help="RAW data like CLI show command outputs or configuration snippets",
+        autocompletion=auto_complete_paths,
     ),
     template_file_name: typer.FileText = typer.Argument(
         ...,
@@ -39,6 +40,7 @@ def render(
         allow_dash=True,
         metavar="TEMPLATE",
         help="TTP template used to get structured data from the raw data",
+        autocompletion=auto_complete_paths,
     ),
     json: bool = typer.Option(default=False, help="json output"),
     only_result: bool = typer.Option(False, "--print-result-only", help="Raw output"),
@@ -49,16 +51,8 @@ def render(
     ),
 ) -> None:
     try:
-        if template_file_name == "-":
-            template_text = sys.stdin.read()
-        else:
-            with open(template_file_name) as template_file:  # type: ignore
-                template_text = template_file.read()
-        if data_file_name == "-":
-            input_data = sys.stdin.read()
-        else:
-            with open(data_file_name) as data_file:  # type: ignore
-                input_data = data_file.read()
+        template_text = read_text(template_file_name)
+        input_data = read_text(data_file_name)
 
         result = render_template(template=template_text, data=input_data)
         if json:
@@ -121,11 +115,11 @@ def render(
                 for p in panels:
                     p.height = height
             print(Columns(panels, equal=True))
-        typer.Exit(0)
+        raise typer.Exit(0)
 
     except NotImplementedError as exc:
         typer.echo(exc)
-        typer.Exit(1)
+        raise typer.Exit(1)
 
 
 if __name__ == "__main__":

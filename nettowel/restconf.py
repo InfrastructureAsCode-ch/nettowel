@@ -1,4 +1,5 @@
 from typing import Any, List
+import json
 from nettowel.logging import log
 from nettowel.exceptions import NettowelRestconfError
 
@@ -55,7 +56,12 @@ def send_request(
             if not exc.response.text:
                 response = None
             else:
-                response = exc.response.text if return_xml else exc.response.json()
+                if return_xml:
+                    return exc.response.text
+                try:
+                    response = exc.response.json()
+                except json.decoder.JSONDecodeError:
+                    response = exc.response.text
         else:
             response = None
         log.debug(response)

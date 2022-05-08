@@ -1,5 +1,6 @@
 PROJECT=nettowel
 CODE_DIRS=${PROJECT} tests
+IMG_URL=https://raw.githubusercontent.com/InfrastructureAsCode-ch/nettowel/main/imgs/
 
 .PHONY: pytest
 pytest:
@@ -22,3 +23,6 @@ bump:
 	sed -i -E "s|\"\b[0-9]+.\b[0-9]+.\b[0-9]+\"  # From Makefile|\"`poetry version -s`\"  # From Makefile|g" ${PROJECT}/__init__.py
 	sed -i -E "s|\"\b[0-9]+.\b[0-9]+.\b[0-9]+\"  # From Makefile|\"`poetry version -s`\"  # From Makefile|g" tests/test_${PROJECT}.py
 
+.PHONY: fiximageurls
+fiximageurls:
+	sed -i "s|](imgs/|](${IMG_URL}|g" README.md
