@@ -3,7 +3,7 @@ from nettowel.exceptions import NettowelDependencyMissing, NettowelSyntaxError
 from nettowel.logging import log
 from nettowel._common import needs
 
-_module = "jinja2"
+_module = "jinja"
 
 try:
     from jinja2 import Environment, Undefined, exceptions

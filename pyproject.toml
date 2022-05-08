@@ -46,7 +46,7 @@ mypy = "^0.942"
 types-requests = "^2.27.20"
 
 [tool.poetry.extras]
-full = ["Jinja2", "ttp", "textfsm", "napalm", "netmiko", "scrapli", "nornir", "pandas"]
+full = ["jinja", "ttp", "textfsm", "napalm", "netmiko", "scrapli", "nornir", "pandas"]
 jinja = ["Jinja2", "jinja2schema"]
 ttp = ["ttp"]
 textfsm = ["textfsm"]
