@@ -300,16 +300,16 @@ Jinja2 = ">=2.2"
 
 [[package]]
 name = "junos-eznc"
-version = "2.6.3"
+version = "2.5.4"
 description = "Junos 'EZ' automation for non-programmers"
 category = "main"
 optional = true
-python-versions = ">=3.*, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [package.dependencies]
 jinja2 = ">=2.7.1"
 lxml = ">=3.2.4"
-ncclient = "0.6.9"
+ncclient = ">=0.6.3"
 netaddr = "*"
 paramiko = ">=1.15.2"
 pyparsing = "*"
@@ -410,7 +410,7 @@ textfsm = "*"
 
 [[package]]
 name = "ncclient"
-version = "0.6.9"
+version = "0.6.13"
 description = "Python library for NETCONF clients"
 category = "main"
 optional = true
@@ -1388,8 +1388,8 @@ jinja2schema = [
     {file = "jinja2schema-0.1.4.tar.gz", hash = "sha256:236e4ee6612a0ab5a5664c453c954a2c7e42b6be986c12f7b31f34f9082043bc"},
 ]
 junos-eznc = [
-    {file = "junos-eznc-2.6.3.tar.gz", hash = "sha256:4eee93d0af203af7cee54a8f0c7bd28af683e829edf1fd68feba85d0ad737395"},
-    {file = "junos_eznc-2.6.3-py2.py3-none-any.whl", hash = "sha256:353fbe230a21caa021d37a0f840b09a9748a4f3d9689f46222200c3853d9bd20"},
+    {file = "junos-eznc-2.5.4.tar.gz", hash = "sha256:bf036d0af9ee5c5e4f517cb5fc902fe891fa120e18f459805862c53d4a97193a"},
+    {file = "junos_eznc-2.5.4-py2.py3-none-any.whl", hash = "sha256:e05c36d56d8b8d13b1fb3bb763828bb3ee80fa1dcadc3a6762e8e2568504676d"},
 ]
 loguru = [
     {file = "loguru-0.6.0-py3-none-any.whl", hash = "sha256:4e2414d534a2ab57573365b3e6d0234dfb1d84b68b7f3b948e6fb743860a77c3"},
@@ -1534,7 +1534,7 @@ napalm = [
     {file = "napalm-3.3.1.tar.gz", hash = "sha256:6fe46d5b4ca761a2bde8ea2bea3e0b808a907afc808c6c67178060eb323320e8"},
 ]
 ncclient = [
-    {file = "ncclient-0.6.9.tar.gz", hash = "sha256:0112f2ad41fb658f52446d870853a63691d69299c73c7351c520d38dbd8dc0c4"},
+    {file = "ncclient-0.6.13.tar.gz", hash = "sha256:f9f8cea8bcbe057e1b948b9cd1b241eafb8a3f73c4981fbdfa1cc6ed69c0a7b3"},
 ]
 netaddr = [
     {file = "netaddr-0.8.0-py2.py3-none-any.whl", hash = "sha256:9666d0232c32d2656e5e5f8d735f58fd6c7457ce52fc21c98d45f2af78f990ac"},
