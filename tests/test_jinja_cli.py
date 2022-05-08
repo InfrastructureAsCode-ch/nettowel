@@ -1,6 +1,8 @@
+import pytest
 from typer.testing import CliRunner
 from nettowel.cli.jinja import app
 
+pytestmark = pytest.mark.jinja
 runner = CliRunner(mix_stderr=False)
 
 

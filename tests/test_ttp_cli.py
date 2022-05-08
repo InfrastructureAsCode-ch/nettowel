@@ -1,6 +1,8 @@
+import pytest
 from typer.testing import CliRunner
 from nettowel.cli.ttp import app
 
+pytestmark = pytest.mark.ttp
 runner = CliRunner(mix_stderr=False)
 
 
