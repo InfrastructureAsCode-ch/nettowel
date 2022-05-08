@@ -12,8 +12,6 @@ from nettowel.cli._common import get_typer_app
 from nettowel.exceptions import (
     NettowelException,
 )
-from nettowel.netmiko import get_device_types, send_command
-from nettowel.netmiko import autodetect as netmiko_autodetect
 
 app = get_typer_app(help="Netmiko functions")
 
@@ -100,6 +98,8 @@ def cli(
     json: bool = typer.Option(default=False, help="json output"),
     raw: bool = typer.Option(default=False, help="raw output"),
 ) -> None:
+    from nettowel.netmiko import send_command
+
     try:
         if not any([user, ssh_config_file]):
             user = Prompt.ask("Enter username")
@@ -149,6 +149,8 @@ def device_types(
     ctx: typer.Context,
     json: bool = typer.Option(default=False, help="json output"),
 ) -> None:
+    from nettowel.netmiko import get_device_types
+
     try:
         types = get_device_types()
         if json:
@@ -196,6 +198,8 @@ def autodetect(
     ),
     json: bool = typer.Option(default=False, help="json output"),
 ) -> None:
+    from nettowel.netmiko import autodetect as netmiko_autodetect
+
     try:
         if not any([user, ssh_config_file]):
             user = Prompt.ask("Enter username")

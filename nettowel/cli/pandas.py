@@ -3,8 +3,6 @@ from rich import print_json, print
 from rich.panel import Panel
 from nettowel.cli._common import get_typer_app, auto_complete_paths, read_yaml
 
-from nettowel.pandas import normalize
-
 
 app = get_typer_app(help="[EXPERIMENTAL] Pandas tools")
 
@@ -27,6 +25,8 @@ def flatten(
     json: bool = typer.Option(default=False, help="json output"),
     raw: bool = typer.Option(default=False, help="raw output"),
 ) -> None:
+    from nettowel.pandas import normalize
+
     input_data = read_yaml(data)
     result = normalize(input_data, sep=sep)
 
