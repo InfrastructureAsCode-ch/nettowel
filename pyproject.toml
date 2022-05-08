@@ -54,7 +54,25 @@ netmiko = ["netmiko"]
 scrapli = ["scrapli"]
 nornir = ["nornir", "nornir-napalm", "nornir-scrapli", "nornir-utils", "nornir-jinja2", "nornir-pyxl", "nornir-http", "nornir-netmiko", "nornir-rich"]
 pandas = ["pandas"]
-full = ["jinja", "ttp", "textfsm", "napalm", "netmiko", "scrapli", "nornir", "pandas"]
+full = [
+    "Jinja2", 
+    "jinja2schema", 
+    "ttp", 
+    "textfsm", 
+    "napalm", 
+    "netmiko", 
+    "scrapli", 
+    "nornir", 
+    "nornir-napalm", 
+    "nornir-scrapli", 
+    "nornir-utils", 
+    "nornir-jinja2", 
+    "nornir-pyxl", 
+    "nornir-http", 
+    "nornir-netmiko", 
+    "nornir-rich", 
+    "pandas"
+]
 
 [tool.poetry.scripts]
 nettowel = 'nettowel.cli.main:run'
