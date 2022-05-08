@@ -6,7 +6,7 @@ Collection of useful network automation functions
 
 ## Install
 
-You can install `nettowel` directly from pypi
+You can install it directly from pypi
 
 ```bash
 pip install nettowel
@@ -14,7 +14,7 @@ pip install nettowel
 
 To reduce the dependencies the extra dependencies are grouped
 
-The following groups are available (more details in the in the pyproject.toml):
+The following groups are available (more details in the pyproject.toml):
 
 - full
 - jinja
@@ -24,6 +24,7 @@ The following groups are available (more details in the in the pyproject.toml):
 - netmiko
 - scrapli
 - nornir
+- pandas
 
 ```bash
 pip install nettowel[jinja]
@@ -40,9 +41,9 @@ poetry run nettowel --help
 ```
 
 
-## Help and shell auto completion
+## Help and shell auto-completion
 
-Thanks to the library [typer](https://typer.tiangolo.com/) `nettowel` comes with a nice help and autocompletion install
+Thanks to the library [typer](https://typer.tiangolo.com/), `nettowel` comes with a nice help and autocompletion install
 
 ![help](imgs/help.png)
 
@@ -123,7 +124,7 @@ Many features are not implemented yet and many features will come.
 
 ### Settings
 
-A `dotenv` file can be used as a settings file. It also be provided an `dotenv` file with the option `--dotenv`.
+A `dotenv` file can be used as a settings file. The file can also be provided with the option `--dotenv`.
 
 ![environment settings](imgs/env-settings.png)
 

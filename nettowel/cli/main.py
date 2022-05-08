@@ -1,4 +1,3 @@
-from pathlib import Path
 import typer
 
 from rich.panel import Panel
