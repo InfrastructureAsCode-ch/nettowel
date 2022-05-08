@@ -12,7 +12,6 @@ from rich.scope import render_scope
 from rich.json import JSON
 
 from nettowel.exceptions import NettowelDependencyMissing, NettowelSyntaxError
-from nettowel.jinja import render_template, validate_template, get_variables
 from nettowel.cli._common import (
     get_typer_app,
     auto_complete_paths,
@@ -134,6 +133,8 @@ def render(
         help="Adjust the width of the panel to fit the content",
     ),
 ) -> None:
+    from nettowel.jinja import render_template
+
     try:
         template_text = read_text(template_file_name)
         input_data = read_yaml(data_file_name)
@@ -241,6 +242,8 @@ def validate(
     ),
     json: bool = typer.Option(default=False, help="json output"),
 ) -> None:
+    from nettowel.jinja import validate_template
+
     try:
         template_text = read_text(template_file_name)
         result, data = validate_template(template_text)
@@ -295,6 +298,7 @@ def variables(
     ),
     json: bool = typer.Option(default=False, help="json output"),
 ) -> None:
+    from nettowel.jinja import get_variables
 
     try:
         template_text = read_text(template_file_name)

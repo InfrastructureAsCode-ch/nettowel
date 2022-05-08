@@ -9,7 +9,6 @@ from rich.columns import Columns
 from rich.syntax import Syntax
 
 from nettowel.cli._common import get_typer_app, read_text, auto_complete_paths
-from nettowel.ttp import render_template
 
 
 app = get_typer_app(help="TTP templating functions")
@@ -50,6 +49,8 @@ def render(
         help="Adjust the width of the panel to fit the content",
     ),
 ) -> None:
+    from nettowel.ttp import render_template
+
     try:
         template_text = read_text(template_file_name)
         input_data = read_text(data_file_name)
