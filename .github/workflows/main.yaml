@@ -83,6 +83,7 @@ jobs:
   release:
     name: Releasing to pypi
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+    needs: [linters, pytest]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
