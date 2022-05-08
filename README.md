@@ -142,3 +142,20 @@ A `dotenv` file can be used as a settings file. The file can also be provided wi
 ```
 typer nettowel/cli/main.py utils docs --name nettowel --output CLI.md
 ```
+
+## Contributing
+
+### Run tests:
+
+```bash
+make tests
+```
+
+
+### Bump version:
+
+Steps: patch, minor, major, prepatch, preminor, premajor, prerelease.
+
+```bash
+make bump ARGS=patch
+```
