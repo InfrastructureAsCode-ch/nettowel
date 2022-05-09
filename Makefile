@@ -33,5 +33,4 @@ tag:
 	git pull
 	git tag -a "v`poetry version -s`" -m "Version v`poetry version -s`"
 	git push --tags
-	poetry version ${ARGS}
 	git checkout -
