@@ -1,6 +1,6 @@
 from typing import Any, List
 import json
-from nettowel.logging import log
+from nettowel.logger import log
 from nettowel.exceptions import NettowelRestconfError
 
 import requests
