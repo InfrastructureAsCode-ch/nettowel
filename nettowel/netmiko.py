@@ -1,6 +1,6 @@
 from typing import Any, List
 from nettowel._common import needs
-from nettowel.logging import log
+from nettowel.logger import log
 from nettowel.exceptions import NettowelTimeoutError
 
 _module = "netmiko"

@@ -1,1 +1,1 @@
-__version__ = "0.4.2"  # From Makefile
+__version__ = "0.5.0"  # From Makefile

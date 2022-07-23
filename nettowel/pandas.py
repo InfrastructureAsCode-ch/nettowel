@@ -1,6 +1,6 @@
 from typing import Any
 import io
-from nettowel.logging import log
+from nettowel.logger import log
 from nettowel._common import needs
 
 _module = "pandas"

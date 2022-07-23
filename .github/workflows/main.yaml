@@ -81,7 +81,7 @@ jobs:
         run: make pytest
     
   pytest_extras:
-    name: Testing on Python ${{ matrix.python-version }} (${{ matrix.platform}}) -- extre ${{ matrix.extra }}
+    name: Testing ${{ matrix.extra }} on Python ${{ matrix.python-version }} (${{ matrix.platform}}) 
     defaults:
       run:
         shell: bash
@@ -150,3 +150,8 @@ jobs:
         with:
           user: __token__
           password: ${{ secrets.PYPI_API_TOKEN }}
+      
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: dist/*

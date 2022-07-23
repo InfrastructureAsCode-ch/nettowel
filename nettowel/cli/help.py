@@ -1,7 +1,7 @@
 from io import StringIO
 from qrcode import QRCode
 
-from nettowel.logging import log
+from nettowel.logger import log
 
 HELP_MARKDOWN = """
 **NetTowel** is a collection of network automation functions. 

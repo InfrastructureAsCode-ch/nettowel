@@ -26,3 +26,11 @@ bump:
 .PHONY: fiximageurls
 fiximageurls:
 	sed -i "s|](imgs/|](${IMG_URL}|g" README.md
+
+.PHONY: tag
+tag:
+	git checkout main
+	git pull
+	git tag -a "v`poetry version -s`" -m "Version v`poetry version -s`"
+	git push --tags
+	git checkout -

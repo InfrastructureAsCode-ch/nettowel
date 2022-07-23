@@ -1,6 +1,6 @@
 from typing import Any
 from nettowel._common import needs
-from nettowel.logging import log
+from nettowel.logger import log
 
 _module = "ttp"
 

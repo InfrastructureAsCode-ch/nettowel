@@ -1,5 +1,5 @@
 from nettowel.exceptions import NettowelDependencyMissing
-from nettowel.logging import log
+from nettowel.logger import log
 
 
 def needs(needs: bool, package: str, group: str) -> bool:

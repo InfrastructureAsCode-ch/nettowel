@@ -1,6 +1,6 @@
 from typing import Any, Tuple, Dict, Union
 from nettowel.exceptions import NettowelDependencyMissing, NettowelSyntaxError
-from nettowel.logging import log
+from nettowel.logger import log
 from nettowel._common import needs
 
 _module = "jinja"
