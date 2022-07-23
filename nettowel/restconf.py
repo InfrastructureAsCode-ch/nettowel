@@ -6,7 +6,7 @@ from nettowel.exceptions import NettowelRestconfError
 import requests
 import urllib3
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)  # type: ignore
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 content_type = {
     "json": "application/yang-data+json",
