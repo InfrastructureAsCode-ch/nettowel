@@ -5,7 +5,7 @@ description = "Network Automation Collection"
 authors = ["ubaumann <github@m.ubaumann.ch>"]
 license = "Apache 2.0"
 readme = "README.md"
-repository = "https://github.com/InfrastructureAsCode-ch/nettowel/tree"
+repository = "https://github.com/InfrastructureAsCode-ch/nettowel"
 classifiers = [
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python :: 3.8",
