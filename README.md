@@ -1,5 +1,10 @@
-# nettowel
+[![PyPI versions](https://img.shields.io/pypi/pyversions/nettowel.svg)](https://pypi.python.org/pypi/nettowel/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+
+# NetTowel
 Collection of useful network automation functions 
+
 
 > ⚠️ `nettowel` is under heavy construction and not production ready. Feedback is highly appreciated.
 
