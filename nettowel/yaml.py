@@ -1,6 +1,8 @@
 from typing import IO, Any
 import io
 import ruamel.yaml
+from ruamel.yaml.error import MarkedYAMLError
+from nettowel.exceptions import NettowelInputError
 
 
 def load(f: IO[str]) -> Any:
@@ -13,7 +15,11 @@ def load(f: IO[str]) -> Any:
         Any: YAML Data
     """
     yaml = ruamel.yaml.YAML(typ="safe")
-    return yaml.load(f)
+    try:
+        return yaml.load(f)
+
+    except MarkedYAMLError as exc:
+        raise NettowelInputError(str(exc))
 
 
 def dump(data: Any) -> str:
