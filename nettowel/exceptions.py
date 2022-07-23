@@ -39,3 +39,7 @@ class NettowelRestconfError(NettowelException):
         self.error_str = error_str
         self.server_msg = server_msg
         super().__init__(self.error_str)
+
+
+class NettowelInputError(NettowelException):
+    ...
