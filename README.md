@@ -123,6 +123,16 @@ Many features are not implemented yet and many features will come.
 ![network info](imgs/network-info.png)
 
 
+### YAML
+
+#### load
+
+![yaml load](imgs/yaml-load.png)
+
+#### dump
+
+![yaml dump](imgs/yaml-dump.png)
+
 ### Help
 
 ![Help QRcode](imgs/nettowel-help.png)
