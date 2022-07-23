@@ -1,6 +1,7 @@
 [![PyPI versions](https://img.shields.io/pypi/pyversions/nettowel.svg)](https://pypi.python.org/pypi/nettowel/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+[![Downloads](https://pepy.tech/badge/nettowel)](https://pepy.tech/project/nettowel)
 
 # NetTowel
 Collection of useful network automation functions 
@@ -138,29 +139,3 @@ A `dotenv` file can be used as a settings file. The file can also be provided wi
 
 ![piping](imgs/piping.png)
 
-
-
-## Building CLI Docs
-
-**At the moment `typer-cli` is not ready for typer 0.4.0**
-
-```
-typer nettowel/cli/main.py utils docs --name nettowel --output CLI.md
-```
-
-## Contributing
-
-### Run tests:
-
-```bash
-make tests
-```
-
-
-### Bump version:
-
-Steps: patch, minor, major, prepatch, preminor, premajor, prerelease.
-
-```bash
-make bump ARGS=patch
-```

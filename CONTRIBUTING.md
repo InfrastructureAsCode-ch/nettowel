@@ -46,3 +46,12 @@ Run the following command:
 ```
 make pytest
 ```
+
+### Bump version
+
+The version can be updated with the following command:
+Steps: patch, minor, major, prepatch, preminor, premajor, prerelease.
+
+```bash
+make bump ARGS=patch
+```
