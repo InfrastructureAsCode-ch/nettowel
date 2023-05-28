@@ -77,7 +77,7 @@ def help(
 
 
 @app.command(help="Textual/Trogon TUI")
-def tui(ctx: typer.Context):
+def tui(ctx: typer.Context) -> None:
     run_trogon_tui(app=app, ctx=ctx)
 
 
