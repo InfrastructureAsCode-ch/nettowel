@@ -55,3 +55,17 @@ Steps: patch, minor, major, prepatch, preminor, premajor, prerelease.
 ```bash
 make bump ARGS=patch
 ```
+
+### Install branch from git with extras
+
+To install a branch with `pip` and be able to specify the extras use the following command:
+
+```bash
+pip install git+https://github.com/InfrastructureAsCode-ch/nettowel.git@<branch_name>#egg=nettowel[<extras>]
+```
+
+Example:
+
+```bash
+pip install git+https://github.com/InfrastructureAsCode-ch/nettowel.git@develop#egg=nettowel[full]
+```
