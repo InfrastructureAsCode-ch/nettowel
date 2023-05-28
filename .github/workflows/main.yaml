@@ -78,7 +78,7 @@ jobs:
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
 
       - name: Run pytest
-        run: make pytest
+        run: poetry run pytest -vs
     
   pytest_extras:
     name: Testing ${{ matrix.extra }} on Python ${{ matrix.python-version }} (${{ matrix.platform}}) 
