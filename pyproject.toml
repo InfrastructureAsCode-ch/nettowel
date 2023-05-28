@@ -16,7 +16,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.8"
 typer = "^0.6"
-rich = "^12"
+rich = "^12|^13"
 Jinja2 = {version = "^3.0.3", optional = true}
 ttp = {version = "^0.8.4", optional = true}
 textfsm = {version = "^1.1.2", optional = true}
@@ -38,6 +38,7 @@ requests = "^2.27.1"
 # nornir-netmiko = {git = "https://github.com/ktbyers/nornir_netmiko.git", rev = "develop", optional = true}
 # nornir-rich = {git = "https://github.com/InfrastructureAsCode-ch/nornir_rich.git", rev = "develop", optional = true}
 pandas = {version = "^1", optional = true}
+trogon = {version = "^0.4.0", optional = true}
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
@@ -54,6 +55,7 @@ netmiko = ["netmiko"]
 scrapli = ["scrapli"]
 # nornir = ["nornir", "nornir-napalm", "nornir-scrapli", "nornir-utils", "nornir-jinja2", "nornir-pyxl", "nornir-http", "nornir-netmiko", "nornir-rich"]
 pandas = ["pandas"]
+tui = ["trogon"]
 full = [
     "Jinja2", 
     "jinja2schema", 
@@ -71,7 +73,8 @@ full = [
 #    "nornir-http", 
 #    "nornir-netmiko", 
 #    "nornir-rich", 
-    "pandas"
+    "pandas",
+    "trogon"
 ]
 
 [tool.poetry.scripts]

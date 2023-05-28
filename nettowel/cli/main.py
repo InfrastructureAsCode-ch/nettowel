@@ -23,6 +23,8 @@ from nettowel.cli.restconf import app as restconf_app
 from nettowel.cli.pandas import app as pandas_app
 from nettowel.cli.help import get_qrcode, HELP_MARKDOWN
 
+from nettowel.trogon_tui import run_trogon_tui
+
 app = get_typer_app(help="Awesome collection of network automation functions")
 
 for subapp, name in [
@@ -72,6 +74,11 @@ def help(
         border_style="green",
     )
     print(top)
+
+
+@app.command(help="Textual/Trogon TUI")
+def tui(ctx: typer.Context) -> None:
+    run_trogon_tui(app=app, ctx=ctx)
 
 
 def run() -> None:
