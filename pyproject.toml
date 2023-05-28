@@ -74,7 +74,7 @@ full = [
 #    "nornir-netmiko", 
 #    "nornir-rich", 
     "pandas",
-    "tui"
+    "trogon"
 ]
 
 [tool.poetry.scripts]

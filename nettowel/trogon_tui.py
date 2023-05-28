@@ -6,7 +6,7 @@ from nettowel._common import needs
 from nettowel.logger import log
 from nettowel.exceptions import NettowelTimeoutError
 
-_module = "trogon"
+_module = "tui"
 
 try:
     from trogon import Trogon
