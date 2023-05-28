@@ -31,6 +31,7 @@ The following groups are available (more details in the pyproject.toml):
 - scrapli
 - nornir
 - pandas
+- tui
 
 ```bash
 pip install nettowel[jinja]
@@ -149,3 +150,9 @@ A `dotenv` file can be used as a settings file. The file can also be provided wi
 
 ![piping](imgs/piping.png)
 
+
+### TUI
+
+Using [Trogon](https://github.com/Textualize/trogon) a TUI (Terminal User Interface) can be generated to edit and run the NetTowel command.
+
+![TUI](imgs/trogon.png)
