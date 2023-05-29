@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Optional
 import sys
 import typer
 from urllib.parse import quote
@@ -29,7 +29,7 @@ def _send_request(
     json: bool,
     raw: bool,
     verify: bool,
-    data_file: typer.FileText = None,
+    data_file: Optional[typer.FileText] = None,
 ) -> None:
     try:
         if not user:

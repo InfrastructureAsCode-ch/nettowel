@@ -1,4 +1,4 @@
-from typing import Any, List
+from typing import Any, Optional
 import json
 from nettowel.logger import log
 from nettowel.exceptions import NettowelRestconfError
@@ -23,7 +23,7 @@ def send_request(
     url: str,
     username: str,
     password: str,
-    data: str = None,
+    data: Optional[str] = None,
     verify: bool = True,
     send_xml: bool = False,
     return_xml: bool = False,
