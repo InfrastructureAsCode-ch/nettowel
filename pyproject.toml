@@ -15,35 +15,35 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-typer = "^0.6"
+typer = "^0.9"
 rich = "^12|^13"
 Jinja2 = {version = "^3.0.3", optional = true}
-ttp = {version = "^0.8.4", optional = true}
-textfsm = {version = "^1.1.2", optional = true}
-napalm = {version = "^3", optional = true}
+ttp = {version = "^0.9", optional = true}
+textfsm = {version = "^1.1", optional = true}
+napalm = {version = "^4", optional = true}
 netmiko = {version = "^4", optional = true}
-scrapli = {version = "^2022.1.30", optional = true}
-nornir = {version = "^3.2.0", optional = true}
+scrapli = {version = "^2023.1.30", optional = true}
+nornir = {version = "^3.2", optional = true}
 "ruamel.yaml" = "^0.17.21"
 jinja2schema = {version = "^0.1.4", optional = true}
 qrcode = "^7.3.1"
-python-dotenv = "^0.20.0"
+python-dotenv = "^1"
 requests = "^2.27.1"
-# nornir-napalm = {version = "^0.2.0", optional = true}
-# nornir-scrapli = {version = "^2022.1.30", optional = true}
-# nornir-utils = {version = "^0.2.0", optional = true}
-# nornir-jinja2 = {version = "^0.2.0", optional = true}
-# nornir-pyxl = {version = "^1.0.1", optional = true}
-# nornir-http = {version = "^0.1.1", optional = true}
-# nornir-netmiko = {git = "https://github.com/ktbyers/nornir_netmiko.git", rev = "develop", optional = true}
-# nornir-rich = {git = "https://github.com/InfrastructureAsCode-ch/nornir_rich.git", rev = "develop", optional = true}
-pandas = {version = "^1", optional = true}
+nornir-napalm = {version = "^0.4", optional = true}
+nornir-scrapli = {version = "^2023.1.30", optional = true}
+nornir-utils = {version = "^0.2.0", optional = true}
+nornir-jinja2 = {version = "^0.2.0", optional = true}
+nornir-pyxl = {version = "^1.0.1", optional = true}
+nornir-http = {version = "^0.1", optional = true}
+nornir-netmiko = {version = "^1.0.0", optional = true}
+nornir-rich = {version = "^0.1", optional = true}
+pandas = {version = "^2", optional = true}
 trogon = {version = "^0.4.0", optional = true}
 
 [tool.poetry.dev-dependencies]
-black = "^22.3.0"
-pytest = "^7.0.1"
-mypy = "^0.942"
+black = "^22|^23"
+pytest = "^7"
+mypy = "^0.942|^1"
 types-requests = "^2.27.20"
 
 [tool.poetry.extras]
@@ -53,7 +53,7 @@ textfsm = ["textfsm"]
 napalm = ["napalm"]
 netmiko = ["netmiko"]
 scrapli = ["scrapli"]
-# nornir = ["nornir", "nornir-napalm", "nornir-scrapli", "nornir-utils", "nornir-jinja2", "nornir-pyxl", "nornir-http", "nornir-netmiko", "nornir-rich"]
+nornir = ["nornir", "nornir-napalm", "nornir-scrapli", "nornir-utils", "nornir-jinja2", "nornir-pyxl", "nornir-http", "nornir-netmiko", "nornir-rich"]
 pandas = ["pandas"]
 tui = ["trogon"]
 full = [
@@ -65,14 +65,14 @@ full = [
     "netmiko", 
     "scrapli", 
     "nornir", 
-#    "nornir-napalm", 
-#    "nornir-scrapli", 
-#    "nornir-utils", 
-#    "nornir-jinja2", 
-#    "nornir-pyxl", 
-#    "nornir-http", 
-#    "nornir-netmiko", 
-#    "nornir-rich", 
+    "nornir-napalm", 
+    "nornir-scrapli", 
+    "nornir-utils", 
+    "nornir-jinja2", 
+    "nornir-pyxl", 
+    "nornir-http", 
+    "nornir-netmiko", 
+    "nornir-rich", 
     "pandas",
     "trogon"
 ]
