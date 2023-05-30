@@ -23,7 +23,7 @@ from nettowel.cli.restconf import app as restconf_app
 from nettowel.cli.pandas import app as pandas_app
 from nettowel.cli.help import get_qrcode, HELP_MARKDOWN
 
-from nettowel.trogon_tui import run_trogon_tui
+from nettowel.exceptions import NettowelDependencyMissing
 
 app = get_typer_app(help="Awesome collection of network automation functions")
 
@@ -78,7 +78,13 @@ def help(
 
 @app.command(help="Textual/Trogon TUI")
 def tui(ctx: typer.Context) -> None:
-    run_trogon_tui(app=app, ctx=ctx)
+    try:
+        from nettowel.trogon_tui import run_trogon_tui
+
+        run_trogon_tui(app=app, ctx=ctx)
+    except NettowelDependencyMissing as exc:
+        typer.echo(str(exc), err=True)
+        raise typer.Exit(1)
 
 
 def run() -> None:
