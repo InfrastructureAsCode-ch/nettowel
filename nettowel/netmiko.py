@@ -1,4 +1,4 @@
-from typing import Any, List
+from typing import Any, List, Optional
 from nettowel._common import needs
 from nettowel.logger import log
 from nettowel.exceptions import NettowelTimeoutError
@@ -28,18 +28,18 @@ def send_command(
     cmd: str,
     device_type: str,
     host: str,
-    username: str = None,
-    password: str = None,
+    username: Optional[str] = None,
+    password: Optional[str] = None,
     port: int = 22,
     secret: str = "",
     use_textfsm: bool = False,
     use_ttp: bool = False,
-    ttp_template: str = None,
+    ttp_template: Optional[str] = None,
     use_genie: bool = False,
-    ssh_config_file: str = None,
+    ssh_config_file: Optional[str] = None,
     use_keys: bool = False,
-    key_file: str = None,
-    session_log: str = None,
+    key_file: Optional[str] = None,
+    session_log: Optional[str] = None,
 ) -> str:
     try:
         device: BaseConnection = ConnectHandler(
@@ -72,14 +72,14 @@ def send_command(
 
 def autodetect(
     host: str,
-    username: str = None,
-    password: str = None,
+    username: Optional[str] = None,
+    password: Optional[str] = None,
     port: int = 22,
     secret: str = "",
-    ssh_config_file: str = None,
+    ssh_config_file: Optional[str] = None,
     use_keys: bool = False,
-    key_file: str = None,
-    session_log: str = None,
+    key_file: Optional[str] = None,
+    session_log: Optional[str] = None,
 ) -> str:
     guesser = SSHDetect(
         device_type="autodetect",

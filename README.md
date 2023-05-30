@@ -1,5 +1,11 @@
-# nettowel
+[![PyPI versions](https://img.shields.io/pypi/pyversions/nettowel.svg)](https://pypi.python.org/pypi/nettowel/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+[![Downloads](https://pepy.tech/badge/nettowel)](https://pepy.tech/project/nettowel)
+
+# NetTowel
 Collection of useful network automation functions 
+
 
 > ⚠️ `nettowel` is under heavy construction and not production ready. Feedback is highly appreciated.
 
@@ -25,6 +31,7 @@ The following groups are available (more details in the pyproject.toml):
 - scrapli
 - nornir
 - pandas
+- tui
 
 ```bash
 pip install nettowel[jinja]
@@ -117,6 +124,16 @@ Many features are not implemented yet and many features will come.
 ![network info](imgs/network-info.png)
 
 
+### YAML
+
+#### load
+
+![yaml load](imgs/yaml-load.png)
+
+#### dump
+
+![yaml dump](imgs/yaml-dump.png)
+
 ### Help
 
 ![Help QRcode](imgs/nettowel-help.png)
@@ -134,28 +151,8 @@ A `dotenv` file can be used as a settings file. The file can also be provided wi
 ![piping](imgs/piping.png)
 
 
+### TUI
 
-## Building CLI Docs
+Using [Trogon](https://github.com/Textualize/trogon) a TUI (Terminal User Interface) can be generated to edit and run the NetTowel command.
 
-**At the moment `typer-cli` is not ready for typer 0.4.0**
-
-```
-typer nettowel/cli/main.py utils docs --name nettowel --output CLI.md
-```
-
-## Contributing
-
-### Run tests:
-
-```bash
-make tests
-```
-
-
-### Bump version:
-
-Steps: patch, minor, major, prepatch, preminor, premajor, prerelease.
-
-```bash
-make bump ARGS=patch
-```
+![TUI](imgs/trogon.png)
