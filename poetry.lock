@@ -527,7 +527,7 @@ Jinja2 = ">=2.2"
 name = "jsonpatch"
 version = "1.33"
 description = "Apply JSON-Patches (RFC 6902)"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, !=3.6.*"
 files = [
     {file = "jsonpatch-1.33-py2.py3-none-any.whl", hash = "sha256:0ae28c0cd062bbd8b8ecc26d7d164fbbea9652a1a3693f3b956c1eae5145dade"},
@@ -541,7 +541,7 @@ jsonpointer = ">=1.9"
 name = "jsonpointer"
 version = "2.4"
 description = "Identify specific nodes in a JSON document (RFC 6901)"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, !=3.6.*"
 files = [
     {file = "jsonpointer-2.4-py2.py3-none-any.whl", hash = "sha256:15d51bba20eea3165644553647711d150376234112651b4f1811022aecad7d7a"},
@@ -1282,8 +1282,8 @@ files = [
 [package.dependencies]
 numpy = [
     {version = ">=1.20.3", markers = "python_version < \"3.10\""},
-    {version = ">=1.23.2", markers = "python_version >= \"3.11\""},
     {version = ">=1.21.0", markers = "python_version >= \"3.10\" and python_version < \"3.11\""},
+    {version = ">=1.23.2", markers = "python_version >= \"3.11\""},
 ]
 python-dateutil = ">=2.8.2"
 pytz = ">=2020.1"
@@ -1905,13 +1905,13 @@ six = "*"
 
 [[package]]
 name = "textual"
-version = "0.56.0"
+version = "0.56.1"
 description = "Modern Text User Interface framework"
 optional = true
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "textual-0.56.0-py3-none-any.whl", hash = "sha256:c57202e135e9b06ad0c73c12d2d5828f8f46eff98e87db848c9c309b57c77e40"},
-    {file = "textual-0.56.0.tar.gz", hash = "sha256:8782e286d96a0350be432e634bacf718e8c67392b8e70683df836e5e33e3055a"},
+    {file = "textual-0.56.1-py3-none-any.whl", hash = "sha256:0394b6e94ab1a0a0e9522d004adfb9fa40a925086aad3fb37c9d6d165b0a0cb7"},
+    {file = "textual-0.56.1.tar.gz", hash = "sha256:598f3dd694b37036fcd41e1a22895ac449c972563d182c50839a17057da10040"},
 ]
 
 [package.dependencies]
@@ -2112,9 +2112,9 @@ docs = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "rst.link
 testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-ignore-flaky", "pytest-mypy", "pytest-ruff (>=0.2.1)"]
 
 [extras]
-full = ["Jinja2", "jinja2schema", "napalm", "netmiko", "nornir", "nornir-http", "nornir-jinja2", "nornir-napalm", "nornir-netmiko", "nornir-pyxl", "nornir-rich", "nornir-scrapli", "nornir-utils", "pandas", "scrapli", "textfsm", "trogon", "ttp"]
+full = ["Jinja2", "jinja2schema", "jsonpatch", "napalm", "netmiko", "nornir", "nornir-http", "nornir-jinja2", "nornir-napalm", "nornir-netmiko", "nornir-pyxl", "nornir-rich", "nornir-scrapli", "nornir-utils", "pandas", "scrapli", "textfsm", "trogon", "ttp"]
 jinja = ["Jinja2", "jinja2schema"]
-jsonpatch = []
+jsonpatch = ["jsonpatch"]
 napalm = ["napalm"]
 netmiko = ["netmiko"]
 nornir = ["nornir", "nornir-http", "nornir-jinja2", "nornir-napalm", "nornir-netmiko", "nornir-pyxl", "nornir-rich", "nornir-scrapli", "nornir-utils"]
@@ -2127,4 +2127,4 @@ tui = ["trogon"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "91cfaebc4007772d2d52d1d040b03bad811bbe70d7a61c020b0f4c1326714946"
+content-hash = "2955d0ca9d8b456449b99a99773f74e692cef15d3fb5c0f74a81017c21e1d4db"
