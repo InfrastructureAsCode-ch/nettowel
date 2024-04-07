@@ -1,0 +1,7 @@
+interfaces:
+  - name: Loopback0
+    addr: 10.10.10.10
+    mask: 255.255.255.255
+  - name: Ethernet0/1
+    addr: 192.168.1.1
+    mask: 255.255.255.192

@@ -21,6 +21,7 @@ from nettowel.cli.netmiko import app as netmiko_app
 from nettowel.cli.scrapli import app as scrapli_app
 from nettowel.cli.restconf import app as restconf_app
 from nettowel.cli.pandas import app as pandas_app
+from nettowel.cli.jsonpatch import app as jsonpatch_app
 from nettowel.cli.help import get_qrcode, HELP_MARKDOWN
 
 from nettowel.exceptions import NettowelDependencyMissing
@@ -40,6 +41,7 @@ for subapp, name in [
     (scrapli_app, "scrapli"),
     (restconf_app, "restconf"),
     (pandas_app, "pandas"),
+    (jsonpatch_app, "jsonpatch"),
 ]:
     app.add_typer(subapp, name=name)
 

@@ -52,17 +52,16 @@ def send_request(
     except requests.exceptions.ConnectionError as exc:
         raise NettowelRestconfError(str(exc), None)
     except requests.exceptions.RequestException as exc:
-        if exc.request:
+        exc_response: Any = None
+        if exc.request is not None and exc.response is not None:
             if not exc.response.text:
-                response = None
+                exc_response = None
             else:
                 if return_xml:
                     return exc.response.text
                 try:
-                    response = exc.response.json()
+                    exc_response = exc.response.json()
                 except json.decoder.JSONDecodeError:
-                    response = exc.response.text
-        else:
-            response = None
-        log.debug(response)
-        raise NettowelRestconfError(str(exc), response)
+                    exc_response = exc.response.text
+        log.debug(exc_response)
+        raise NettowelRestconfError(str(exc), exc_response)
