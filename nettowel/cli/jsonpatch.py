@@ -13,8 +13,6 @@ from nettowel.cli._common import (
 )
 from nettowel.exceptions import NettowelInputError
 
-from nettowel import jsonpatch
-
 
 app = get_typer_app(help="JSON Patch [RFC 6902](http://tools.ietf.org/html/rfc6902)")
 
@@ -52,6 +50,8 @@ def create(
         False, "--print-result-only", help="Only print the result"
     ),
 ) -> None:
+    from nettowel import jsonpatch
+
     try:
         src = read_yaml(src_file_name)
         dst = read_yaml(dst_file_name)
@@ -119,6 +119,8 @@ def apply(
         False, "--print-result-only", help="Only print the result"
     ),
 ) -> None:
+    from nettowel import jsonpatch
+
     try:
         patch_data = read_yaml(patch_file_name)
         data_input = read_yaml(data_file_name)
