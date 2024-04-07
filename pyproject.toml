@@ -39,6 +39,8 @@ nornir-netmiko = {version = "^1.0.0", optional = true}
 nornir-rich = {version = "^0.1", optional = true}
 pandas = {version = "^2", optional = true}
 trogon = {version = "^0.5.0", optional = true}
+jsonpatch = {version = "^1.33", optional = true}
+
 
 [tool.poetry.dev-dependencies]
 black = "^22|^23|^24"
@@ -56,6 +58,7 @@ scrapli = ["scrapli"]
 nornir = ["nornir", "nornir-napalm", "nornir-scrapli", "nornir-utils", "nornir-jinja2", "nornir-pyxl", "nornir-http", "nornir-netmiko", "nornir-rich"]
 pandas = ["pandas"]
 tui = ["trogon"]
+jsonpatch = ["jsonpatch"]
 full = [
     "Jinja2", 
     "jinja2schema", 
@@ -74,7 +77,8 @@ full = [
     "nornir-netmiko", 
     "nornir-rich", 
     "pandas",
-    "trogon"
+    "trogon",
+    "jsonpatch"
 ]
 
 [tool.poetry.scripts]
