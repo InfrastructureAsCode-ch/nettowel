@@ -11,8 +11,13 @@ Collection of useful network automation functions
 
 
 ## Install
+It is recommended to install `nettowel` with [pipx](https://pipx.pypa.io/). Therefore you have the dependencies isolated and you can use the `nettowel` or `nt` command.
 
-You can install it directly from pypi
+```bash
+pipx install nettowel[full]
+```
+
+You can also install it directly from pypi
 
 ```bash
 pip install nettowel
