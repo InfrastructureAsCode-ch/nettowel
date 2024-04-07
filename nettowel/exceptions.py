@@ -1,8 +1,7 @@
 from typing import Any
 
 
-class NettowelException(Exception):
-    ...
+class NettowelException(Exception): ...
 
 
 class NettowelDependencyMissing(NettowelException):
@@ -18,16 +17,13 @@ class NettowelDependencyMissing(NettowelException):
         super().__init__(self.msg)
 
 
-class NettowelSyntaxError(NettowelException):
-    ...
+class NettowelSyntaxError(NettowelException): ...
 
 
-class NettowelTimeoutError(NettowelException):
-    ...
+class NettowelTimeoutError(NettowelException): ...
 
 
-class NettowelUsageError(NettowelException):
-    ...
+class NettowelUsageError(NettowelException): ...
 
 
 class NettowelRestconfError(NettowelException):
@@ -41,5 +37,4 @@ class NettowelRestconfError(NettowelException):
         super().__init__(self.error_str)
 
 
-class NettowelInputError(NettowelException):
-    ...
+class NettowelInputError(NettowelException): ...
