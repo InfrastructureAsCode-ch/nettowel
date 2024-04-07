@@ -15,7 +15,7 @@ except ImportError:
     JSONPATCH_INSTALLED = False
 
 
-def create(src: Any, dst: Any) -> JsonPatch:
+def create(src: Any, dst: Any) -> "JsonPatch":
     """Create a JSON patch [RFC 6902](http://tools.ietf.org/html/rfc6902)
 
     Args:
