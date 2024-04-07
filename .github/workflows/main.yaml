@@ -90,7 +90,7 @@ jobs:
       matrix:
         python-version: [ '3.8', '3.9', '3.10' ]
         platform: [ubuntu-latest, macOS-latest, windows-latest]
-        extra: [ 'jinja', 'ttp']
+        extra: [ 'jinja', 'ttp', 'jsonpatch']
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v2

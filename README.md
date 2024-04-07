@@ -31,6 +31,7 @@ The following groups are available (more details in the pyproject.toml):
 - scrapli
 - nornir
 - pandas
+- jsonpatch
 - tui
 
 ```bash
@@ -133,6 +134,18 @@ Many features are not implemented yet and many features will come.
 #### dump
 
 ![yaml dump](imgs/yaml-dump.png)
+
+
+### JSON Patch ([RFC 6902](http://tools.ietf.org/html/rfc6902))
+
+#### create
+
+![JSON Patch create](imgs/jsonpatch-create.png)
+
+#### apply
+
+![JSON Patch apply](imgs/jsonpatch-apply.png)
+
 
 ### Help
 
