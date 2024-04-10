@@ -71,7 +71,7 @@ def create(
                 panels.append(
                     Panel(
                         JSON.from_data(dst),
-                        title="[yellow]Destrination",
+                        title="[yellow]Destination",
                         border_style="blue",
                     )
                 )
