@@ -1,95 +1,93 @@
-[tool.poetry]
+[project]
 name = "nettowel"
 version = "0.6.1"
 description = "Network Automation Collection"
-authors = ["ubaumann <github@m.ubaumann.ch>"]
-license = "Apache 2.0"
 readme = "README.md"
-repository = "https://github.com/InfrastructureAsCode-ch/nettowel"
+authors = [{ name = "ubaumann", email = "github@m.ubaumann.ch" }]
+license = { text = "Apache 2.0" }
 classifiers = [
-        "License :: OSI Approved :: Apache Software License",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
-        "Programming Language :: Python :: 3.11",
-        "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "typer>=0.9",
+    "rich>=12,>=13",
+    "ruamel.yaml>=0.18",
+    "qrcode>=7.3.1",
+    "python-dotenv>=1",
+    "requests>=2.27.1",
 ]
 
-[tool.poetry.dependencies]
-python = "^3.8"
-typer = "^0.9|^0.10|^0.11|^0.12"
-rich = "^12|^13"
-Jinja2 = {version = "^3", optional = true}
-ttp = {version = "^0.9", optional = true}
-textfsm = {version = "^1.1", optional = true}
-napalm = {version = "^4", optional = true}
-netmiko = {version = "^4", optional = true}
-scrapli = {version = "^2023.1.30", optional = true}
-nornir = {version = "^3.2", optional = true}
-"ruamel.yaml" = "^0.18"
-jinja2schema = {version = "^0.1.4", optional = true}
-qrcode = "^7.3.1"
-python-dotenv = "^1"
-requests = "^2.27.1"
-nornir-napalm = {version = "^0.4", optional = true}
-nornir-scrapli = {version = "^2023.1.30", optional = true}
-nornir-utils = {version = "^0.2.0", optional = true}
-nornir-jinja2 = {version = "^0.2.0", optional = true}
-nornir-pyxl = {version = "^1.0.1", optional = true}
-nornir-http = {version = "^0.1", optional = true}
-nornir-netmiko = {version = "^1.0.0", optional = true}
-nornir-rich = {version = "^0.1", optional = true}
-pandas = {version = "^2", optional = true}
-trogon = {version = "^0.5.0", optional = true}
-jsonpatch = {version = "^1.33", optional = true}
+[project.urls]
+Homepage = "https://github.com/InfrastructureAsCode-ch/nettowel"
+Documentation = "https://github.com/InfrastructureAsCode-ch/nettowel"
+Repository = "https://github.com/InfrastructureAsCode-ch/nettowel"
+Issues = "https://github.com/InfrastructureAsCode-ch/nettowel/issues"
+Changelog = "https://github.com/InfrastructureAsCode-ch/nettowel/releases"
 
+[project.scripts]
+nettowel = "nettowel.cli.main:run"
+nt = "nettowel.cli.main:run"
 
-[tool.poetry.dev-dependencies]
-black = "^22|^23|^24"
-pytest = "^7|^8"
-mypy = "^0.942|^1"
-types-requests = "^2.27.20"
-
-[tool.poetry.extras]
-jinja = ["Jinja2", "jinja2schema"]
-ttp = ["ttp"]
-textfsm = ["textfsm"]
-napalm = ["napalm"]
-netmiko = ["netmiko"]
-scrapli = ["scrapli"]
-nornir = ["nornir", "nornir-napalm", "nornir-scrapli", "nornir-utils", "nornir-jinja2", "nornir-pyxl", "nornir-http", "nornir-netmiko", "nornir-rich"]
-pandas = ["pandas"]
-tui = ["trogon"]
-jsonpatch = ["jsonpatch"]
+[project.optional-dependencies]
+jinja = ["jinja2>=3.1.6", "jinja2schema>=0.1.4"]
+ttp = ["ttp>=0.9.5"]
+textfsm = ["textfsm>=2.1.0"]
+napalm = ["napalm>=3.4.1"]
+netmiko = ["netmiko>=3.4.0"]
+scrapli = ["scrapli>=2024.7.30.post1"]
+nornir = [
+    "nornir>=3.4.1",
+    "nornir-http>=0.1.3",
+    "nornir-jinja2>=0.2.0",
+    "nornir-napalm>=0.2.0",
+    "nornir-netmiko>=0.1.2",
+    "nornir-pyxl>=1.0.1",
+    "nornir-rich>=0.2.0",
+    "nornir-scrapli>=2024.7.30",
+    "nornir-utils>=0.2.0",
+]
+pandas = ["pandas>=2.0.3"]
+tui = ["trogon>=0.5.0"]
+jsonpatch = ["jsonpatch>=1.33"]
 full = [
-    "Jinja2", 
-    "jinja2schema", 
-    "ttp", 
-    "textfsm", 
-    "napalm", 
-    "netmiko", 
-    "scrapli", 
-    "nornir", 
-    "nornir-napalm", 
-    "nornir-scrapli", 
-    "nornir-utils", 
-    "nornir-jinja2", 
-    "nornir-pyxl", 
-    "nornir-http", 
-    "nornir-netmiko", 
-    "nornir-rich", 
-    "pandas",
-    "trogon",
-    "jsonpatch"
+    "jinja2>=3.1.6",
+    "jinja2schema>=0.1.4",
+    "jsonpatch>=1.33",
+    "napalm>=3.4.1",
+    "netmiko>=3.4.0",
+    "nornir>=3.4.1",
+    "nornir-http>=0.1.3",
+    "nornir-jinja2>=0.2.0",
+    "nornir-napalm>=0.2.0",
+    "nornir-netmiko>=0.1.2",
+    "nornir-pyxl>=1.0.1",
+    "nornir-rich>=0.2.0",
+    "nornir-scrapli>=2024.7.30",
+    "nornir-utils>=0.2.0",
+    "pandas>=2.0.3",
+    "scrapli>=2024.7.30.post1",
+    "textfsm>=2.1.0",
+    "trogon>=0.5.0",
+    "ttp>=0.9.5",
 ]
-
-[tool.poetry.scripts]
-nettowel = 'nettowel.cli.main:run'
-nt = 'nettowel.cli.main:run'
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.8.4,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "black>=24.8.0",
+    "mypy>=1.14.1",
+    "pytest>=8.3.5",
+    "types-requests>=2.32.0.20241016",
+]
 
 [tool.mypy]
 python_version = "3.8"
