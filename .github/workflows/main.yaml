@@ -7,7 +7,7 @@ jobs:
     name: linters
     strategy:
       matrix:
-        python-version: [ '3.8' ]
+        python-version: [ '3.9' ]
         platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
     steps:
@@ -25,7 +25,7 @@ jobs:
           virtualenvs-in-project: true
 
       - name: Cache Poetry virtualenv
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: cached-poetry-dependencies
         with:
           path: .venv
@@ -48,8 +48,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ '3.8', '3.9', '3.10', '3.11', '3.12' ]
-        platform: [ubuntu-latest, macOS-latest, windows-latest]
+        python-version: [ '3.9', '3.10', '3.11', '3.12' ]
+        platform: [ubuntu-latest, macos-13, windows-latest]
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v2
@@ -66,7 +66,7 @@ jobs:
           virtualenvs-in-project: true
 
       - name: Cache Poetry virtualenv
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: cached-poetry-dependencies
         with:
           path: .venv
@@ -88,12 +88,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ '3.8', '3.9', '3.10', '3.11', '3.12' ]
-        platform: [ubuntu-latest, macOS-latest, windows-latest]
+        python-version: [ '3.9', '3.10', '3.11', '3.12' ]
+        platform: [ubuntu-latest, macos-13, windows-latest]
         extra: [ 'jinja', 'ttp', 'jsonpatch']
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Setup python
         uses: actions/setup-python@v1
         with:
@@ -107,7 +107,7 @@ jobs:
           virtualenvs-in-project: true
 
       - name: Cache Poetry virtualenv
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: cached-poetry-dependencies
         with:
           path: .venv
@@ -131,7 +131,7 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@v1
         with:
-          python-version: 3.8
+          python-version: "3.9"
       
       - name: Install Poetry
         uses: snok/install-poetry@v1
