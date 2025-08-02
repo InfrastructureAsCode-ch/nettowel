@@ -14,12 +14,12 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 dependencies = [
-    "typer>=0.9",
+    "typer>=0.16",
     "rich>=12,>=13",
     "ruamel.yaml>=0.18",
-    "qrcode>=7.3.1",
+    "qrcode>=8",
     "python-dotenv>=1",
-    "requests>=2.27.1",
+    "requests>=2",
 ]
 
 [project.urls]
@@ -34,46 +34,46 @@ nettowel = "nettowel.cli.main:run"
 nt = "nettowel.cli.main:run"
 
 [project.optional-dependencies]
-jinja = ["jinja2>=3.1.6", "jinja2schema>=0.1.4"]
-ttp = ["ttp>=0.9.5"]
-textfsm = ["textfsm>=2.1.0"]
-napalm = ["napalm>=3.4.1"]
-netmiko = ["netmiko>=3.4.0"]
-scrapli = ["scrapli>=2024.7.30.post1"]
+jinja = ["jinja2>=3", "jinja2schema>=0.1"]
+ttp = ["ttp>=0.9"]
+textfsm = ["textfsm>=1"]
+napalm = ["napalm>=5"]
+netmiko = ["netmiko>=4"]
+scrapli = ["scrapli>=2025.1"]
 nornir = [
-    "nornir>=3.4.1",
-    "nornir-http>=0.1.3",
-    "nornir-jinja2>=0.2.0",
-    "nornir-napalm>=0.2.0",
-    "nornir-netmiko>=0.1.2",
-    "nornir-pyxl>=1.0.1",
-    "nornir-rich>=0.2.0",
-    "nornir-scrapli>=2024.7.30",
-    "nornir-utils>=0.2.0",
+    "nornir>=3.5",
+    "nornir-http",
+    "nornir-jinja2",
+    "nornir-napalm",
+    "nornir-netmiko",
+    "nornir-pyxl",
+    "nornir-rich",
+    "nornir-scrapli",
+    "nornir-utils",
 ]
-pandas = ["pandas>=2.0.3"]
-tui = ["trogon>=0.5.0"]
-jsonpatch = ["jsonpatch>=1.33"]
+pandas = ["pandas>=2"]
+tui = ["trogon>=0.6"]
+jsonpatch = ["jsonpatch>=1"]
 full = [
-    "jinja2>=3.1.6",
-    "jinja2schema>=0.1.4",
-    "jsonpatch>=1.33",
-    "napalm>=3.4.1",
-    "netmiko>=3.4.0",
-    "nornir>=3.4.1",
-    "nornir-http>=0.1.3",
-    "nornir-jinja2>=0.2.0",
-    "nornir-napalm>=0.2.0",
-    "nornir-netmiko>=0.1.2",
-    "nornir-pyxl>=1.0.1",
-    "nornir-rich>=0.2.0",
-    "nornir-scrapli>=2024.7.30",
-    "nornir-utils>=0.2.0",
-    "pandas>=2.0.3",
-    "scrapli>=2024.7.30.post1",
-    "textfsm>=2.1.0",
-    "trogon>=0.5.0",
-    "ttp>=0.9.5",
+    "jinja2",
+    "jinja2schema",
+    "jsonpatch",
+    "napalm",
+    "netmiko",
+    "nornir",
+    "nornir-http",
+    "nornir-jinja2",
+    "nornir-napalm",
+    "nornir-netmiko",
+    "nornir-pyxl",
+    "nornir-rich",
+    "nornir-scrapli",
+    "nornir-utils",
+    "pandas",
+    "scrapli",
+    "textfsm",
+    "trogon",
+    "ttp",
 ]
 
 [build-system]
