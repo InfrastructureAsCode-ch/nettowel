@@ -2,7 +2,7 @@ import pytest
 from typer.testing import CliRunner
 from nettowel.cli.main import app
 
-runner = CliRunner(mix_stderr=False)
+runner = CliRunner()
 
 
 def test_help() -> None:
