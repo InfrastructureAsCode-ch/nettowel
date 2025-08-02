@@ -4,7 +4,7 @@ Contributions are highly welcomed and appreciated!
 
 ## Development Environment
 
-NetTowel uses [poetry](https://python-poetry.org/docs/) for packaging and
+NetTowel uses [uv](https://docs.astral.sh/uv/) for packaging and
 dependency management.
 
 ### Tests

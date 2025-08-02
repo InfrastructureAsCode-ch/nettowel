@@ -49,8 +49,8 @@ pip install nettowel[full]
 ```
 git clone ....
 cd nettowel
-poetry install
-poetry run nettowel --help
+uv sync --extra full
+uv run nettowel --help
 ```
 
 
